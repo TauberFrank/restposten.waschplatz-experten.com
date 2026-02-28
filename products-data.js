@@ -127,7 +127,7 @@ Ergänzt wird die Lösung durch einen maßgefertigten BASIC-Spiegel in Schwarz m
     images: ["./img/koje-5/1.jpg", "./img/koje-5/2.jpg", "./img/koje-5/3.jpg", "./img/koje-5/4.jpg", "./img/koje-5/5.jpg"],
     description: `Viel Platz auf beeindruckenden 216 cm Breite! Dieser großzügige Doppelwaschtisch aus Ocritech in Weiß matt bietet zwei vollwertige Becken (Modell R3, je ca. 70 cm breit) — trotz der auf 46 cm reduzierten Tiefe, die wertvolle Raumfläche spart ohne Komfort einzubüßen.
 
-Die Möbel der Serie Up&Down mit integrierten Griffleisten in den Laminat-Dekoren Matrix 131x und 118x vereinen warme Holzoptik mit robuster Oberfläche. Zwei Spiegel (je 90 × 72 cm) mit „Phone 2"-Leuchten, ein offenes Element zwischen den Spiegeln und ein offener Einschub im Unterbau runden das Ensemble ab.
+Die Möbel der Serie Up&Down mit integrierten Griffleisten in den Laminat-Dekoren Matrix 131x und 118x vereinen warme Holzoptik mit robuster Oberfläche. Zwei Spiegel (je 90 × 72 cm) mit „Phone 2"-LED-Leuchten, ein offenes Element zwischen den Spiegeln und ein offener Einschub im Unterbau runden das Ensemble ab.
 
 Ocritech ist ein hochwertiger Mineralguss mit seidig-matter Oberfläche, der sich durch einfache Pflege und hohe Widerstandsfähigkeit auszeichnet.`,
     condition: null,
@@ -139,7 +139,7 @@ Ocritech ist ein hochwertiger Mineralguss mit seidig-matter Oberfläche, der sic
       ["Breite", "216 cm"],
       ["Tiefe", "46 cm (reduziert)"],
       ["Spiegel", "2 × Spiegel 90 × 72 cm"],
-      ["Beleuchtung", "2 × Phone 2 Leuchte"],
+      ["Beleuchtung", "2 × Phone 2 Leuchte (LED)"],
       ["Extras", "Offenes Element + offener Einschub"]
     ],
     whatsapp: "Interesse%20an%20Koje%205%20(Doppelwaschtisch%20216cm%2C%201.904%E2%82%AC)"

@@ -13,10 +13,10 @@
     <link rel="canonical" href="https://restposten.waschplatz-experten.com">
     <link rel="stylesheet" href="./dist/output.css">
 </head>
-<body class="bg-gray-950 text-white">
+<body class="bg-neutral-950 text-white">
 
     <!-- HEADER -->
-    <header class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur border-b border-gray-800">
+    <header class="sticky top-0 z-50 bg-neutral-950/95 backdrop-blur border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
             <a href="./index.html" class="shrink-0 hover:opacity-80 transition-opacity"><img src="./Siegel_Waschplatz-Experten_V2.jpg" alt="Waschplatz-Experten" class="h-14 sm:h-16"></a>
             <div class="hidden sm:flex flex-1 overflow-hidden justify-center min-w-0">
@@ -126,7 +126,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-gray-800 bg-gray-950 py-8 px-4 mt-12">
+    <footer class="border-t border-gray-800 bg-neutral-950 py-8 px-4 mt-12">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <span>&copy; 2026 Waschplatz-Experten — restposten.waschplatz-experten.com</span>
             <div class="flex gap-6">
@@ -138,7 +138,7 @@
     </footer>
 
     <!-- FLOATING CTA (Mobile) -->
-    <div class="fixed bottom-0 left-0 right-0 bg-gray-950/95 backdrop-blur border-t border-gray-800 p-3 sm:hidden z-50">
+    <div class="fixed bottom-0 left-0 right-0 bg-neutral-950/95 backdrop-blur border-t border-gray-800 p-3 sm:hidden z-50">
         <a href="tel:071411421690" class="block bg-red-600 text-white text-center font-bold py-3 rounded-xl">Jetzt anrufen: 07141 1421690</a>
     </div>
 
@@ -170,9 +170,9 @@
 
     // Set page title & meta
     document.getElementById('page-title').textContent = `${kojeLabel}: ${product.title} ${product.width} | Restposten Waschplatz-Experten`;
-    document.getElementById('page-desc').content = product.description.substring(0, 160);
-    document.getElementById('og-title').content = `${product.title} ${product.width} — ${product.discount}% reduziert`;
-    document.getElementById('og-desc').content = `Statt ${product.originalPrice.toLocaleString('de-DE')}€ nur ${product.price.toLocaleString('de-DE')}€. Selbstabholung Ludwigsburg.`;
+    document.getElementById('page-desc').content = `${product.title} ${product.width} — ${product.discount}% reduziert. Statt ${product.originalPrice.toLocaleString('de-DE')}€ nur ${product.price.toLocaleString('de-DE')}€. Unbenutzt, Selbstabholung Ludwigsburg bei Stuttgart.`;
+    document.getElementById('og-title').content = `${kojeLabel}: ${product.title} ${product.width} — ${product.discount}% reduziert`;
+    document.getElementById('og-desc').content = `Statt ${product.originalPrice.toLocaleString('de-DE')}€ nur ${product.price.toLocaleString('de-DE')}€ (${product.discount}% Rabatt). Unbenutzt, Selbstabholung Ludwigsburg bei Stuttgart.`;
     document.getElementById('og-image').content = `https://restposten.waschplatz-experten.com/${product.images[0]}`;
     document.getElementById('og-url').content = `https://restposten.waschplatz-experten.com/produkt.html?id=${productId}`;
 
