@@ -126,7 +126,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-gray-800 bg-neutral-950 py-8 px-4 mt-12">
+    <footer class="border-t border-gray-800 bg-neutral-950 py-8 pb-20 sm:pb-8 px-4 mt-12">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <span>&copy; 2026 Waschplatz-Experten — restposten.waschplatz-experten.com</span>
             <div class="flex gap-6">
@@ -139,15 +139,15 @@
 
     <!-- FLOATING CTA (Mobile) -->
     <div class="fixed bottom-0 left-0 right-0 bg-neutral-950/95 backdrop-blur border-t border-gray-800 p-3 sm:hidden z-50">
-        <a href="tel:071411421690" class="block bg-red-600 text-white text-center font-bold py-3 rounded-xl">Jetzt anrufen: 07141 1421690</a>
+        <a id="floating-whatsapp" href="#" target="_blank" rel="noopener" class="block bg-emerald-600 text-white text-center font-bold py-3 rounded-xl">WhatsApp schreiben</a>
     </div>
 
     <!-- LIGHTBOX -->
     <div id="lightbox" class="fixed inset-0 bg-black/95 z-100 hidden items-center justify-center p-4">
-        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-red-400 transition-colors z-10">&times;</button>
-        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:text-red-400 transition-colors z-10">&lsaquo;</button>
-        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:text-red-400 transition-colors z-10">&rsaquo;</button>
-        <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg">
+        <button id="lightbox-close" class="absolute top-3 right-3 text-white text-4xl font-bold hover:text-red-400 transition-colors z-10 w-12 h-12 flex items-center justify-center">&times;</button>
+        <button id="lightbox-prev" class="absolute left-0 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:text-red-400 transition-colors z-10 w-14 h-24 flex items-center justify-center">&lsaquo;</button>
+        <button id="lightbox-next" class="absolute right-0 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:text-red-400 transition-colors z-10 w-14 h-24 flex items-center justify-center">&rsaquo;</button>
+        <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg select-none">
     </div>
 
     <!-- PRODUCT DATA -->
@@ -232,6 +232,7 @@
     // WhatsApp link with pre-filled text (Koje number + link)
     const whatsappText = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}\n\nBitte teilen Sie mir mit, ob dieser noch verfügbar ist.\n- Ich würde diesen gerne abholen am: \n- Ich habe folgende Fragen: `);
     document.getElementById('whatsapp-link').href = `https://wa.me/491733435961?text=${whatsappText}`;
+    document.getElementById('floating-whatsapp').href = `https://wa.me/491733435961?text=${whatsappText}`;
 
     // Email link with subject and body (Koje number + link)
     const emailSubject = encodeURIComponent('Abverkaufsware, Anfrage');
@@ -320,6 +321,22 @@
         if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + product.images.length) % product.images.length; lightboxImg.src = product.images[currentIndex]; }
         if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % product.images.length; lightboxImg.src = product.images[currentIndex]; }
     });
+
+    // Touch swipe support for lightbox
+    let touchStartX = 0;
+    let touchStartY = 0;
+    lightbox.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, {passive: true});
+    lightbox.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) < 50 || Math.abs(dy) > Math.abs(dx)) return;
+        if (dx < 0) { currentIndex = (currentIndex + 1) % product.images.length; }
+        else { currentIndex = (currentIndex - 1 + product.images.length) % product.images.length; }
+        lightboxImg.src = product.images[currentIndex];
+    }, {passive: true});
 
     // Ticker (slide animation)
     (function() {
