@@ -18,7 +18,7 @@
     <!-- HEADER -->
     <header class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="./index.html" class="text-lg font-bold tracking-tight hover:text-gray-300 transition-colors">Waschplatz-Experten</a>
+            <a href="./index.html" class="hover:opacity-80 transition-opacity"><img src="./Siegel_Waschplatz-Experten_V2.jpg" alt="Waschplatz-Experten" class="h-10 sm:h-12"></a>
             <div class="flex items-center gap-2 sm:gap-4">
                 <span class="text-[10px] sm:text-xs font-semibold bg-amber-500/15 text-amber-400 px-2 sm:px-3 py-1 rounded-full border border-amber-500/30">Nur Abholung</span>
                 <span class="text-[10px] sm:text-xs font-semibold bg-red-500/15 text-red-400 px-2 sm:px-3 py-1 rounded-full border border-red-500/30">Einzelstücke</span>
@@ -56,7 +56,7 @@
                 <!-- TITLE + PRICE -->
                 <div class="mb-8">
                     <h1 id="product-title" class="text-2xl sm:text-3xl font-black mb-2"></h1>
-                    <p id="product-subtitle" class="text-gray-400 mb-4"></p>
+                    <p id="product-subtitle" class="text-gray-400 text-base mb-4"></p>
                     <div class="flex flex-wrap items-baseline gap-4 mb-2">
                         <span id="product-price" class="text-3xl sm:text-4xl font-black text-red-500"></span>
                         <span id="product-original" class="text-lg text-gray-500 line-through"></span>
@@ -67,13 +67,13 @@
                 <!-- CONDITION NOTE -->
                 <div id="condition-block" class="hidden mb-8 bg-amber-500/10 border border-amber-500/30 rounded-xl p-4">
                     <p class="text-amber-300 text-sm font-semibold mb-1">Hinweis zum Zustand</p>
-                    <p id="condition-text" class="text-amber-200/80 text-sm"></p>
+                    <p id="condition-text" class="text-amber-200/80 text-base"></p>
                 </div>
 
                 <!-- DESCRIPTION -->
                 <div class="mb-8">
                     <h2 class="text-lg font-bold mb-3">Beschreibung</h2>
-                    <div id="product-description" class="text-gray-300 leading-relaxed space-y-3"></div>
+                    <div id="product-description" class="text-gray-300 text-base leading-relaxed space-y-3"></div>
                 </div>
 
                 <!-- SPECS TABLE -->
@@ -88,25 +88,26 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         Abholung &amp; Wichtige Hinweise
                     </h3>
-                    <p class="text-gray-300 text-sm mb-3">Mitnahmepreis bei Selbstabholung gegen Barzahlung in Ludwigsburg.</p>
-                    <ul class="text-gray-400 text-sm space-y-2 mb-4">
+                    <p class="text-gray-300 text-base mb-3">Mitnahmepreis bei Selbstabholung gegen Barzahlung in Ludwigsburg.</p>
+                    <ul class="text-gray-400 text-base space-y-2 mb-4">
                         <li class="flex gap-2"><span class="text-amber-500 mt-0.5">&#8226;</span><span>Unmontiert zum Einladen bereit (1. Stock, gut zugänglich, Einlademöglichkeit direkt vor dem Gebäude)</span></li>
                         <li class="flex gap-2"><span class="text-amber-500 mt-0.5">&#8226;</span><span>Bitte vereinbaren Sie einen Termin und kommen Sie min. zu zweit</span></li>
                         <li class="flex gap-2"><span class="text-amber-500 mt-0.5">&#8226;</span><span>Befestigungsmaterial enthalten — Montage denkbar einfach</span></li>
                         <li class="flex gap-2"><span class="text-amber-500 mt-0.5">&#8226;</span><span>Armaturen nicht enthalten, ggf. zusätzlich erhältlich</span></li>
-                        <li class="flex gap-2"><span class="text-amber-500 mt-0.5">&#8226;</span><span>Zwischenverkauf vorbehalten — bitte vorher anrufen oder mailen</span></li>
+                        <li class="flex gap-2"><span class="text-amber-500 mt-0.5">&#8226;</span><span class="font-bold text-amber-300">Zwischenverkauf vorbehalten — bitte vorher anrufen oder mailen</span></li>
                     </ul>
-                    <div class="text-sm text-gray-400 space-y-1 border-t border-gray-800 pt-3">
-                        <p>Kammererstraße 8, 71636 Ludwigsburg</p>
-                        <p>Telefon: <a href="tel:071411421690" class="text-white hover:text-red-400">07141 1421690</a> · E-Mail: <a href="mailto:service@waschplatz-experten.com" class="text-white hover:text-red-400">service@waschplatz-experten.com</a></p>
-                        <p>Täglich 8–20 Uhr, auch am Wochenende</p>
+                    <div class="text-base text-gray-400 space-y-1 border-t border-gray-800 pt-3">
+                        <p>Selbstabholung in 71636 Ludwigsburg</p>
+                        <p>Erreichbar täglich 8–20 Uhr: <a href="tel:071411421690" class="text-white hover:text-red-400">07141 1421690</a></p>
+                        <p>E-Mail: <a id="email-link" href="mailto:service@waschplatz-experten.com" class="text-white hover:text-red-400">service@waschplatz-experten.com</a></p>
                     </div>
                 </div>
 
                 <!-- CTA BUTTONS -->
                 <div class="flex flex-col sm:flex-row gap-3 mb-8">
-                    <a href="tel:071411421690" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center font-bold py-4 rounded-xl transition-colors text-lg">Jetzt anrufen</a>
+                    <a href="tel:071411421690" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-center font-bold py-4 rounded-xl transition-colors text-lg">Anrufen (8–20 Uhr)</a>
                     <a id="whatsapp-link" href="#" target="_blank" rel="noopener" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-center font-bold py-4 rounded-xl transition-colors text-lg">WhatsApp schreiben</a>
+                    <a id="email-cta" href="#" class="flex-1 bg-gray-700 hover:bg-gray-600 text-white text-center font-bold py-4 rounded-xl transition-colors text-lg">E-Mail schreiben</a>
                 </div>
 
             </div>
@@ -217,13 +218,21 @@
     const specsTable = document.getElementById('specs-table');
     product.specs.forEach(([label, value], i) => {
         const row = document.createElement('div');
-        row.className = `flex justify-between gap-4 px-4 py-3 text-sm ${i % 2 === 0 ? 'bg-gray-900/30' : ''}`;
+        row.className = `flex justify-between gap-4 px-4 py-3 text-base ${i % 2 === 0 ? 'bg-gray-900/30' : ''}`;
         row.innerHTML = `<span class="text-gray-400 shrink-0">${label}</span><span class="text-white text-right">${value}</span>`;
         specsTable.appendChild(row);
     });
 
-    // WhatsApp link
-    document.getElementById('whatsapp-link').href = `https://wa.me/491733435961?text=${product.whatsapp}`;
+    // WhatsApp link with pre-filled text
+    const whatsappText = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten: ${product.title} ${product.width} (${productId})`);
+    document.getElementById('whatsapp-link').href = `https://wa.me/491733435961?text=${whatsappText}`;
+
+    // Email link with subject and body
+    const emailSubject = encodeURIComponent('Abverkaufsware, Anfrage');
+    const emailBody = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten: ${product.title} ${product.width} (${productId})`);
+    const emailHref = `mailto:service@waschplatz-experten.com?subject=${emailSubject}&body=${emailBody}`;
+    document.getElementById('email-cta').href = emailHref;
+    document.getElementById('email-link').href = emailHref;
 
     // Sidebar (both mobile and desktop)
     function buildSidebar(container, isMobile) {
