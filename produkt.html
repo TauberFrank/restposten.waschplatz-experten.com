@@ -230,12 +230,12 @@
     });
 
     // WhatsApp link with pre-filled text (Koje number + link)
-    const whatsappText = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}`);
+    const whatsappText = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}\n\nBitte teilen Sie mir mit, ob dieser noch verfügbar ist.\n- Ich würde diesen gerne abholen am: \n- Ich habe folgende Fragen: `);
     document.getElementById('whatsapp-link').href = `https://wa.me/491733435961?text=${whatsappText}`;
 
     // Email link with subject and body (Koje number + link)
     const emailSubject = encodeURIComponent('Abverkaufsware, Anfrage');
-    const emailBody = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}`);
+    const emailBody = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}\n\nBitte teilen Sie mir mit, ob dieser noch verfügbar ist.\n- Ich würde diesen gerne abholen am: \n- Ich habe folgende Fragen: `);
     const emailHref = `mailto:service@waschplatz-experten.com?subject=${emailSubject}&body=${emailBody}`;
     document.getElementById('email-cta').href = emailHref;
     document.getElementById('email-link').href = emailHref;
