@@ -17,12 +17,15 @@
 
     <!-- HEADER -->
     <header class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <a href="./index.html" class="hover:opacity-80 transition-opacity"><img src="./Siegel_Waschplatz-Experten_V2.jpg" alt="Waschplatz-Experten" class="h-14 sm:h-16"></a>
-            <div class="flex items-center gap-3 sm:gap-4">
-                <span id="ticker" class="hidden sm:inline-block text-xs lg:text-sm text-amber-400 font-semibold max-w-xs lg:max-w-md border-r border-amber-500/30 pr-3 sm:pr-4"></span>
-                <a href="tel:071411421690" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors shrink-0">07141 1421690</a>
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
+            <a href="./index.html" class="shrink-0 hover:opacity-80 transition-opacity"><img src="./Siegel_Waschplatz-Experten_V2.jpg" alt="Waschplatz-Experten" class="h-14 sm:h-16"></a>
+            <div class="hidden sm:flex flex-1 overflow-hidden justify-center min-w-0">
+                <span id="ticker" class="text-xs lg:text-sm text-amber-400 font-semibold whitespace-nowrap" style="opacity:0"></span>
             </div>
+            <a href="tel:071411421690" class="ml-auto sm:ml-0 shrink-0 bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">07141 1421690</a>
+        </div>
+        <div class="sm:hidden overflow-hidden bg-amber-500/10 border-t border-amber-500/20 py-1.5 px-4 text-center">
+            <span id="ticker-mobile" class="text-[11px] text-amber-400 font-semibold" style="opacity:0"></span>
         </div>
     </header>
 
@@ -318,7 +321,7 @@
         if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % product.images.length; lightboxImg.src = product.images[currentIndex]; }
     });
 
-    // Ticker (typewriter effect)
+    // Ticker (slide animation)
     (function() {
         const messages = [
             'Premium Badmöbel — Ausstellungsstücke zum stark reduzierten Preis',
@@ -329,23 +332,40 @@
             'Telefonisch täglich 8–20 Uhr, auch am Wochenende erreichbar'
         ];
         const el = document.getElementById('ticker');
-        if (!el) return;
+        const elM = document.getElementById('ticker-mobile');
         let idx = 0;
-        function typeMessage() {
+        function show() {
             const msg = messages[idx];
-            let c = 0;
-            el.textContent = '';
-            el.style.borderRight = '2px solid #f59e0b';
-            const typing = setInterval(() => {
-                if (c < msg.length) { el.textContent += msg[c]; c++; }
-                else {
-                    clearInterval(typing);
-                    el.style.borderRight = '';
-                    setTimeout(() => { idx = (idx + 1) % messages.length; typeMessage(); }, 7000);
+            if (el) {
+                el.textContent = msg;
+                el.style.transition = 'none';
+                el.style.transform = 'translateX(80%)';
+                el.style.opacity = '0';
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    el.style.transition = 'transform 1s ease-out, opacity 0.6s ease-out';
+                    el.style.transform = 'translateX(0)';
+                    el.style.opacity = '1';
+                }));
+            }
+            if (elM) {
+                elM.textContent = msg;
+                elM.style.transition = 'opacity 0.6s';
+                elM.style.opacity = '1';
+            }
+            setTimeout(() => {
+                if (el) {
+                    el.style.transition = 'transform 1s ease-in, opacity 0.6s ease-in';
+                    el.style.transform = 'translateX(-80%)';
+                    el.style.opacity = '0';
                 }
-            }, 35);
+                if (elM) {
+                    elM.style.transition = 'opacity 0.6s';
+                    elM.style.opacity = '0';
+                }
+                setTimeout(() => { idx = (idx + 1) % messages.length; show(); }, 1100);
+            }, 8000);
         }
-        typeMessage();
+        show();
     })();
     </script>
 
