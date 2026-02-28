@@ -17,12 +17,11 @@
 
     <!-- HEADER -->
     <header class="sticky top-0 z-50 bg-gray-950/95 backdrop-blur border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="./index.html" class="hover:opacity-80 transition-opacity"><img src="./Siegel_Waschplatz-Experten_V2.jpg" alt="Waschplatz-Experten" class="h-10 sm:h-12"></a>
-            <div class="flex items-center gap-2 sm:gap-4">
-                <span class="text-[10px] sm:text-xs font-semibold bg-amber-500/15 text-amber-400 px-2 sm:px-3 py-1 rounded-full border border-amber-500/30">Nur Abholung</span>
-                <span class="text-[10px] sm:text-xs font-semibold bg-red-500/15 text-red-400 px-2 sm:px-3 py-1 rounded-full border border-red-500/30">Einzelstücke</span>
-                <a href="tel:071411421690" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">07141 1421690</a>
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="./index.html" class="hover:opacity-80 transition-opacity"><img src="./Siegel_Waschplatz-Experten_V2.jpg" alt="Waschplatz-Experten" class="h-14 sm:h-16"></a>
+            <div class="flex items-center gap-3 sm:gap-4">
+                <span id="ticker" class="hidden sm:inline-block text-xs lg:text-sm text-amber-400 font-semibold max-w-xs lg:max-w-md border-r border-amber-500/30 pr-3 sm:pr-4"></span>
+                <a href="tel:071411421690" class="bg-red-600 hover:bg-red-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors shrink-0">07141 1421690</a>
             </div>
         </div>
     </header>
@@ -47,7 +46,7 @@
                 <!-- IMAGE GALLERY -->
                 <div class="mb-8">
                     <div class="relative cursor-pointer mb-3" id="main-image-wrap">
-                        <img id="main-image" src="" alt="" class="w-full max-h-[500px] object-contain rounded-xl bg-gray-900">
+                        <img id="main-image" src="" alt="" class="w-full max-h-125 object-contain rounded-xl bg-gray-900">
                         <span id="discount-badge" class="absolute top-4 right-4 bg-red-600 text-white text-lg font-black px-4 py-2 rounded-xl shadow-lg"></span>
                     </div>
                     <div id="thumbnails" class="grid grid-cols-5 sm:grid-cols-8 gap-2"></div>
@@ -162,8 +161,12 @@
 
     const product = PRODUCTS[productId];
 
+    // Koje label and product URL
+    const kojeLabel = `Koje ${productId.replace('koje-', '')}`;
+    const productUrl = `https://restposten.waschplatz-experten.com/produkt.html?id=${productId}`;
+
     // Set page title & meta
-    document.getElementById('page-title').textContent = `${product.title} ${product.width} | Restposten Waschplatz-Experten`;
+    document.getElementById('page-title').textContent = `${kojeLabel}: ${product.title} ${product.width} | Restposten Waschplatz-Experten`;
     document.getElementById('page-desc').content = product.description.substring(0, 160);
     document.getElementById('og-title').content = `${product.title} ${product.width} — ${product.discount}% reduziert`;
     document.getElementById('og-desc').content = `Statt ${product.originalPrice.toLocaleString('de-DE')}€ nur ${product.price.toLocaleString('de-DE')}€. Selbstabholung Ludwigsburg.`;
@@ -194,7 +197,7 @@
     });
 
     // Title, subtitle, price
-    document.getElementById('product-title').textContent = `${product.title} — ${product.width}`;
+    document.getElementById('product-title').textContent = `${kojeLabel}: ${product.title} — ${product.width}`;
     document.getElementById('product-subtitle').textContent = product.subtitle;
     document.getElementById('product-price').textContent = `${product.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2})} €`;
     document.getElementById('product-original').textContent = `${product.originalPrice.toLocaleString('de-DE', {minimumFractionDigits: 2})} €`;
@@ -223,13 +226,13 @@
         specsTable.appendChild(row);
     });
 
-    // WhatsApp link with pre-filled text
-    const whatsappText = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten: ${product.title} ${product.width} (${productId})`);
+    // WhatsApp link with pre-filled text (Koje number + link)
+    const whatsappText = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}`);
     document.getElementById('whatsapp-link').href = `https://wa.me/491733435961?text=${whatsappText}`;
 
-    // Email link with subject and body
+    // Email link with subject and body (Koje number + link)
     const emailSubject = encodeURIComponent('Abverkaufsware, Anfrage');
-    const emailBody = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten: ${product.title} ${product.width} (${productId})`);
+    const emailBody = encodeURIComponent(`Hallo,\n\nich habe Interesse an folgendem Restposten:\n\n${kojeLabel} — ${product.title} ${product.width}\n${productUrl}`);
     const emailHref = `mailto:service@waschplatz-experten.com?subject=${emailSubject}&body=${emailBody}`;
     document.getElementById('email-cta').href = emailHref;
     document.getElementById('email-link').href = emailHref;
@@ -239,6 +242,7 @@
         PRODUCT_ORDER.forEach(id => {
             const p = PRODUCTS[id];
             const isActive = id === productId;
+            const kojeNr = `Koje ${id.replace('koje-', '')}`;
             const card = document.createElement('a');
             card.href = `produkt.html?id=${id}`;
 
@@ -247,7 +251,7 @@
                 card.innerHTML = `
                     <img src="${p.images[0]}" alt="${p.title}" class="w-full h-20 object-cover">
                     <div class="p-2">
-                        <span class="text-[10px] font-bold text-red-400">-${p.discount}%</span>
+                        <div class="flex items-center gap-1"><span class="text-[10px] font-bold text-gray-400">${kojeNr}</span><span class="text-[10px] font-bold text-red-400">-${p.discount}%</span></div>
                         <p class="text-[11px] text-white font-semibold leading-tight truncate">${p.title}</p>
                         <p class="text-[11px] text-red-400 font-bold">${p.price.toLocaleString('de-DE')} €</p>
                     </div>`;
@@ -256,7 +260,7 @@
                 card.innerHTML = `
                     <img src="${p.images[0]}" alt="${p.title}" class="w-16 h-16 object-cover rounded-lg shrink-0">
                     <div class="min-w-0">
-                        <span class="text-[10px] font-bold text-red-400">-${p.discount}%</span>
+                        <div class="flex items-center gap-2"><span class="text-[10px] font-bold text-gray-400">${kojeNr}</span><span class="text-[10px] font-bold text-red-400">-${p.discount}%</span></div>
                         <p class="text-xs text-white font-semibold leading-tight truncate">${p.title}</p>
                         <p class="text-xs text-gray-400">${p.width}</p>
                         <p class="text-sm text-red-400 font-bold">${p.price.toLocaleString('de-DE')} €</p>
@@ -313,6 +317,36 @@
         if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + product.images.length) % product.images.length; lightboxImg.src = product.images[currentIndex]; }
         if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % product.images.length; lightboxImg.src = product.images[currentIndex]; }
     });
+
+    // Ticker (typewriter effect)
+    (function() {
+        const messages = [
+            'Premium Badmöbel — Ausstellungsstücke zum stark reduzierten Preis',
+            'Abholung in Ludwigsburg bei Stuttgart nach Terminabsprache',
+            'Zwischenzeitlicher Abverkauf ist möglich',
+            'Website wird nicht stundenaktuell gepflegt',
+            'Rufen Sie uns an, ob Ihr Traumwaschtisch noch verfügbar ist',
+            'Telefonisch täglich 8–20 Uhr, auch am Wochenende erreichbar'
+        ];
+        const el = document.getElementById('ticker');
+        if (!el) return;
+        let idx = 0;
+        function typeMessage() {
+            const msg = messages[idx];
+            let c = 0;
+            el.textContent = '';
+            el.style.borderRight = '2px solid #f59e0b';
+            const typing = setInterval(() => {
+                if (c < msg.length) { el.textContent += msg[c]; c++; }
+                else {
+                    clearInterval(typing);
+                    el.style.borderRight = '';
+                    setTimeout(() => { idx = (idx + 1) % messages.length; typeMessage(); }, 7000);
+                }
+            }, 35);
+        }
+        typeMessage();
+    })();
     </script>
 
 </body>
