@@ -10,7 +10,7 @@ const PRODUCTS = {
     originalPrice: 5194.35,
     discount: 75,
     savings: 3885,
-    images: ["./img/koje-6/1.jpg", "./img/koje-6/2.jpg", "./img/koje-6/3.jpg", "./img/koje-6/4.jpg", "./img/koje-6/5.jpg", "./img/koje-6/6.jpg"],
+    images: ["./img/koje-6/1.webp", "./img/koje-6/2.webp", "./img/koje-6/3.webp", "./img/koje-6/4.webp", "./img/koje-6/5.webp", "./img/koje-6/6.webp"],
     description: `Gerundete Waschtische und Badmöbel sind eine elegante Wahl — besonders wenn im Raum unterschiedliche Tiefen gewünscht oder nötig sind. Der 15 mm starke Glaswaschtisch in Weiß mit dem Beckenmodell „Smile Little" vereint geschwungene Formen mit hochwertiger Verarbeitung.
 
 Der Unterbau aus der Serie YOUNG mit integrierten Griffleisten ist matt lackiert in Steinblau (L017K) und zusätzlich mit SILK-Finish veredelt — einer matten Oberfläche mit erhöhtem Schutz gegen Fingerabdrücke und Kratzer.
@@ -38,7 +38,7 @@ Ergänzt wird das Ensemble durch den Spiegelschrank CUBE (102,4 cm, Ausführung 
     originalPrice: 6831.79,
     discount: 64,
     savings: 4357,
-    images: ["./img/koje-14/1.jpg", "./img/koje-14/2.jpg", "./img/koje-14/3.jpg", "./img/koje-14/4.jpg", "./img/koje-14/5.jpg"],
+    images: ["./img/koje-14/1.webp", "./img/koje-14/2.webp", "./img/koje-14/3.webp", "./img/koje-14/4.webp", "./img/koje-14/5.webp"],
     description: `Ein Ausstellungsstück der DeLuxe-Kollektion Accademia — nahezu neuwertig und in maximaler Qualität. Der 15 mm starke Glaswaschtisch in reinem Weiß (Modell Rettangolare, 80 cm) ruht auf einem Möbelkorpus in der edlen Holzoptik „Noce Masselato".
 
 Die schwarzen Griffe ROMA Nero (S01) setzen einen markanten Kontrast zur warmen Holzoberfläche. Der BASIC-Spiegel (160 × 74 cm) mit schwarzem Rahmen und neutralweißer Premium-Beleuchtung vervollständigt das Ensemble. Ein raffinierter Ausschnitt im Spiegel gibt Platz für ein integriertes Wandregal.
@@ -67,7 +67,7 @@ Die Accademia-Serie steht für die Spitze des Puntotre-Sortiments: durchdachte P
     originalPrice: 6926.99,
     discount: 58,
     savings: 4027,
-    images: ["./img/koje-17/1.jpg", "./img/koje-17/2.jpg", "./img/koje-17/3.jpg", "./img/koje-17/4.jpg", "./img/koje-17/5.jpg", "./img/koje-17/6.jpg", "./img/koje-17/7.jpg", "./img/koje-17/8.jpg"],
+    images: ["./img/koje-17/1.webp", "./img/koje-17/2.webp", "./img/koje-17/3.webp", "./img/koje-17/4.webp", "./img/koje-17/5.webp", "./img/koje-17/6.webp", "./img/koje-17/7.webp", "./img/koje-17/8.webp"],
     description: `Eine moderne, hochwertige Waschplatz-Komplettlösung in auffallendem Zweiton-Design. Der fugenlose SolidTek-Waschtisch in Weiß matt (Modell Eye, 75 cm) ist chemikalien- und haarfärbemittelresistent — ein Material, das in Profi-Friseursalons ebenso zuhause ist wie im anspruchsvollen Privatbad.
 
 Die Möbel der Serie LeCornici mit integrierten Griffleisten kombinieren hochglanz-lackiertes Graphitgrau (L019G) mit einem matt-weiß lackierten Rahmen und Korpus (L001M). Das Ergebnis: ein spannender Kontrast zwischen dunkel und hell, glänzend und matt.
@@ -96,7 +96,7 @@ Der Slide-Spiegelschrank mit Edison-Leuchte ist ebenfalls im Zweiton-Design geha
     originalPrice: 5992.84,
     discount: 58,
     savings: 3494,
-    images: ["./img/koje-23/1.jpg", "./img/koje-23/2.jpg", "./img/koje-23/3.jpg", "./img/koje-23/4.jpg", "./img/koje-23/5.jpg", "./img/koje-23/6.jpg", "./img/koje-23/7.jpg", "./img/koje-23/8.jpg", "./img/koje-23/9.jpg"],
+    images: ["./img/koje-23/1.webp", "./img/koje-23/2.webp", "./img/koje-23/3.webp", "./img/koje-23/4.webp", "./img/koje-23/5.webp", "./img/koje-23/6.webp", "./img/koje-23/7.webp", "./img/koje-23/8.webp", "./img/koje-23/9.webp"],
     description: `Ein Designer-Waschtisch mit markantem Allround-Rahmen und nahtlos integriertem Becken. Der SolidTek-Waschtisch in Weiß matt besticht durch präzise 45°-Gehrungsschnitte — ein Zeichen höchster Verarbeitungsqualität, das man sonst nur bei Premium-Küchenarbeitsplatten findet.
 
 Das Beckenmodell Phone (58 cm) ist chemikalien- und haarfärbemittelresistent. Die Möbel der Serie MODULA mit Push-to-Open-Mechanismus (Push-Pull) kommen im eleganten Laminat „Materic – Sable Abbey" (119x) und bieten griffloses, minimalistisches Design.
@@ -124,7 +124,7 @@ Ergänzt wird die Lösung durch einen maßgefertigten BASIC-Spiegel in Schwarz m
     originalPrice: 4444.65,
     discount: 57,
     savings: 2541,
-    images: ["./img/koje-5/1.jpg", "./img/koje-5/2.jpg", "./img/koje-5/3.jpg", "./img/koje-5/4.jpg", "./img/koje-5/5.jpg"],
+    images: ["./img/koje-5/1.webp", "./img/koje-5/2.webp", "./img/koje-5/3.webp", "./img/koje-5/4.webp", "./img/koje-5/5.webp"],
     description: `Viel Platz auf beeindruckenden 216 cm Breite! Dieser großzügige Doppelwaschtisch aus Ocritech in Weiß matt bietet zwei vollwertige Becken (Modell R3, je ca. 70 cm breit) — trotz der auf 46 cm reduzierten Tiefe, die wertvolle Raumfläche spart ohne Komfort einzubüßen.
 
 Die Möbel der Serie Up&Down mit integrierten Griffleisten in den Laminat-Dekoren Matrix 131x und 118x vereinen warme Holzoptik mit robuster Oberfläche. Zwei Spiegel (je 90 × 72 cm) mit „Phone 2"-LED-Leuchten, ein offenes Element zwischen den Spiegeln und ein offener Einschub im Unterbau runden das Ensemble ab.
@@ -153,7 +153,7 @@ Ocritech ist ein hochwertiger Mineralguss mit seidig-matter Oberfläche, der sic
     originalPrice: 4080.51,
     discount: 57,
     savings: 2311,
-    images: ["./img/koje-24/1.jpg", "./img/koje-24/2.jpg", "./img/koje-24/3.jpg", "./img/koje-24/4.jpg", "./img/koje-24/5.jpg"],
+    images: ["./img/koje-24/1.webp", "./img/koje-24/2.webp", "./img/koje-24/3.webp", "./img/koje-24/4.webp", "./img/koje-24/5.webp"],
     description: `Eine elegante Doppelwaschtisch-Anlage mit zwei Aufsatzbecken Skin O in Weiß auf einer Laminat-Waschtischplatte mit 30°-Gehrung. Die Kombination zweier Laminat-Dekore — Ares Visone (117X) und Sable Oakfield (120X) — erzeugt einen lebendigen Zweiton-Look, der Wärme und Modernität vereint.
 
 Die Möbel der bewährten YOUNG-Serie mit integrierten Griffleisten bieten großzügigen Stauraum. Der Aria-Spiegel mit neutralweißer LED-Leuchte Dual setzt das Lichtkonzept fort.
@@ -182,7 +182,7 @@ Die Aufsatzbecken-Bauweise ist nicht nur optisch reizvoll, sondern bietet auch p
     originalPrice: 4942.07,
     discount: 54,
     savings: 2692,
-    images: ["./img/koje-25/1.jpg", "./img/koje-25/2.jpg", "./img/koje-25/3.jpg", "./img/koje-25/4.jpg", "./img/koje-25/5.jpg"],
+    images: ["./img/koje-25/1.webp", "./img/koje-25/2.webp", "./img/koje-25/3.webp", "./img/koje-25/4.webp", "./img/koje-25/5.webp"],
     description: `Eine gerundete Exklusiv-Lösung mit den charakteristischen Rillenfronten der Vertigo Evolution-Serie. Der Ocritech-Waschtisch in Weiß matt (Modell Vertigo DX) fügt sich nahtlos in das organisch-gerundete Design ein.
 
 Der Unterbau in „Fruit Wood Polymer" (189X) strahlt natürliche Wärme aus, während die markanten Rillenfronten für eine unverwechselbare Haptik und Optik sorgen. Ergänzt wird das Ensemble durch einen bodenstehenden Hochschrank (35 × 165 × 35 cm) mit Glastüren in Weiß-Lack (L001M) und schwarzem Profil-Griff.
@@ -211,7 +211,7 @@ Der runde Spiegel PIL 2 (Ø 90 cm) mit integriertem Lichtband setzt einen modern
     originalPrice: 5330.01,
     discount: 53,
     savings: 2831,
-    images: ["./img/koje-4/1.jpg", "./img/koje-4/2.jpg"],
+    images: ["./img/koje-4/1.webp", "./img/koje-4/2.webp"],
     description: `Hochwertiger CORIAN®-Waschtisch in Weiß matt — das Premiumaterial von DuPont, das in der Luxushotellerie und bei Designprojekten weltweit erste Wahl ist. Die fugenlose Verarbeitung macht Schluss mit Schmutzrändern und vereinfacht die Pflege auf ein Minimum.
 
 Das Beckenmodell Occhio mit Soft-Edge-Design bietet sanft gerundete Kanten für ein angenehmes Nutzungserlebnis. Der Unterschrank und Oberschrank der YOUNG-Serie in Hochglanz-Lack Steingrau strahlen zurückhaltende Eleganz aus.
@@ -240,7 +240,7 @@ Der BASIC-Spiegel mit LED-Phone-Beleuchtung rundet die Komposition ab. Corian® 
     originalPrice: 5748.89,
     discount: 50,
     savings: 2854,
-    images: ["./img/koje-1/1.jpg", "./img/koje-1/2.jpg", "./img/koje-1/3.jpg", "./img/koje-1/4.jpg", "./img/koje-1/5.jpg", "./img/koje-1/6.jpg", "./img/koje-1/7.jpg", "./img/koje-1/8.jpg"],
+    images: ["./img/koje-1/1.webp", "./img/koje-1/2.webp", "./img/koje-1/3.webp", "./img/koje-1/4.webp", "./img/koje-1/5.webp", "./img/koje-1/6.webp", "./img/koje-1/7.webp", "./img/koje-1/8.webp"],
     description: `Eine exklusive Waschtisch-Unterschrank-Kombination der DeLuxe-Serie Roma mit dem beeindruckenden GRESS-Waschtisch. GRESS besteht aus dünnen, großformatigen Feinsteinzeug-Platten mit Soft-Touch-Beschichtung — 100% mineralisch, porenlos, säurebeständig und absolut wasserundurchlässig. Ein Material, das die Eigenschaften von feinstem Steinzeug mit der Eleganz einer samtigen Oberfläche verbindet.
 
 Der Waschtisch in Calcatta matt (GR05) mit dem Becken Sirio HPS3 (67 cm) und passendem GRESS-Ablaufventil ruht auf einem Möbelkorpus mit edlem Echtholzfurnier „Paraiso Piombo" (097M). Schwarzmatte Griffe vollenden den hochwertigen Gesamteindruck.
@@ -270,7 +270,7 @@ Der großzügige SUNSET-Spiegel (140 × 128 cm) mit integrierter warmweißer Amb
     originalPrice: 5635.84,
     discount: 49,
     savings: 2744,
-    images: ["./img/koje-9/1.jpg", "./img/koje-9/2.jpg", "./img/koje-9/3.jpg", "./img/koje-9/4.jpg", "./img/koje-9/5.jpg", "./img/koje-9/6.jpg", "./img/koje-9/7.jpg"],
+    images: ["./img/koje-9/1.webp", "./img/koje-9/2.webp", "./img/koje-9/3.webp", "./img/koje-9/4.webp", "./img/koje-9/5.webp", "./img/koje-9/6.webp", "./img/koje-9/7.webp"],
     description: `Eine raffinierte Raumlösung für Bäder, die nach adaptiven Maßen verlangen. Der Tiefen-Versatz — 52 cm auf der linken Seite, nur 35 cm auf der rechten — schafft Bewegungsfreiheit genau dort, wo sie gebraucht wird, ohne auf ein großzügiges Waschbecken zu verzichten.
 
 Der Ocritech-Waschtisch in Weiß matt mit dem Becken „Cut 60" (mit Ablaufschlitz, kein klassisches Ablaufventil nötig) wird durch Möbel der YOUNG-Serie getragen. Die Kombination aus Laminat „Matrix Piasentina Toreano" (128X) und Hochglanz-Lack Weiß verleiht dem Ensemble einen lebendigen Kontrast.
@@ -300,7 +300,7 @@ Komplettiert wird die Lösung durch den Sphera-2-Spiegel (70 cm) mit indirekter 
     originalPrice: 2283.88,
     discount: 36,
     savings: 825,
-    images: ["./img/koje-21/1.jpg", "./img/koje-21/2.jpg", "./img/koje-21/3.jpg", "./img/koje-21/4.jpg", "./img/koje-21/5.jpg"],
+    images: ["./img/koje-21/1.webp", "./img/koje-21/2.webp", "./img/koje-21/3.webp", "./img/koje-21/4.webp", "./img/koje-21/5.webp"],
     description: `Ein kompakter Doppelwaschtisch, der auf nur 120 cm Breite zwei vollwertige, fugenlos integrierte Waschbecken unterbringt — ideal für Paare, die sich ein kleineres Bad teilen. Die zwei Key-Becken aus Ocritech in Weiß matt sind nahtlos in die Waschtischplatte eingearbeitet.
 
 Der Unterschrank mit zwei hochwertigen Schubkästen in matt lackiertem Betongrau zeigt: Das ist echte Lackierung, keine billige Folie oder Beschichtung. Die kompakte Höhe von nur 36 cm erfordert eine Prüfung der Abflussrohr-Höhe — die Anschlüsse können unter die Unterkante des Möbels reichen.
