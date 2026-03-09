@@ -1,0 +1,10 @@
+{
+  "name": "Abverkauf Sonderseite",
+  "sub": "Restposten online verkaufen",
+  "tag": "WEB",
+  "desc": "Eine Produktseite für Sonderangebote und Restposten. Jedes Produkt hat eine eigene Detailseite. Gebaut mit Tailwind, Bilder als WebP optimiert.",
+  "type": "extern",
+  "section": "Web-Projekte",
+  "featured": false,
+  "liveUrl": "https://restposten.waschplatz-experten.com"
+}
