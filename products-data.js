@@ -203,35 +203,6 @@ Der runde Spiegel PIL 2 (Ø 90 cm) mit integriertem Lichtband setzt einen modern
     whatsapp: "Interesse%20an%20Koje%2025%20(Vertigo%20Rillenfronten%2C%202.250%E2%82%AC)"
   },
 
-  "koje-4": {
-    title: "Corian® Waschtisch",
-    width: "175 cm",
-    subtitle: "YOUNG Serie · DuPont Corian® fugenlos · Steingrau Hochglanz-Lack",
-    price: 2499.00,
-    originalPrice: 5330.01,
-    discount: 53,
-    savings: 2831,
-    images: ["./img/koje-4/1.webp", "./img/koje-4/2.webp"],
-    description: `Hochwertiger CORIAN®-Waschtisch in Weiß matt — das Premiumaterial von DuPont, das in der Luxushotellerie und bei Designprojekten weltweit erste Wahl ist. Die fugenlose Verarbeitung macht Schluss mit Schmutzrändern und vereinfacht die Pflege auf ein Minimum.
-
-Das Beckenmodell Occhio mit Soft-Edge-Design bietet sanft gerundete Kanten für ein angenehmes Nutzungserlebnis. Der Unterschrank und Oberschrank der YOUNG-Serie in Hochglanz-Lack Steingrau strahlen zurückhaltende Eleganz aus.
-
-Der BASIC-Spiegel mit LED-Phone-Beleuchtung rundet die Komposition ab. Corian® lässt sich bei Kratzern einfach anschleifen und sieht nach Jahren noch aus wie am ersten Tag.`,
-    condition: null,
-    specs: [
-      ["Waschtisch", "CORIAN® weiß matt, fugenlos"],
-      ["Becken", "Occhio mit Soft-Edge-Design"],
-      ["Möbel-Serie", "YOUNG mit integrierten Griffleisten"],
-      ["Farbe", "Hochglanz-Lack Steingrau"],
-      ["Breite", "175 cm"],
-      ["Tiefe", "52 cm"],
-      ["Höhe Möbel", "48 cm"],
-      ["Spiegel", "BASIC mit LED Phone"],
-      ["Extras", "Oberschrank"]
-    ],
-    whatsapp: "Interesse%20an%20Koje%204%20(Corian%20Waschtisch%2C%202.499%E2%82%AC)"
-  },
-
   "koje-1": {
     title: "GRESS Soft-Touch Exklusiv",
     width: "177 cm",
@@ -325,7 +296,7 @@ Zwei BASIC-Spiegel mit LED-Quadra-Beleuchtung vervollständigen die platzsparend
 // Sortierung nach Rabatt (höchster zuerst)
 const PRODUCT_ORDER = [
   "koje-6", "koje-14", "koje-17", "koje-23", "koje-5",
-  "koje-24", "koje-25", "koje-4", "koje-1", "koje-9", "koje-21"
+  "koje-24", "koje-25", "koje-1", "koje-9", "koje-21"
 ];
 
 // Abholungs-Info (identisch für alle Produkte)
