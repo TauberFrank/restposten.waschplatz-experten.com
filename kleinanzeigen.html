@@ -124,27 +124,37 @@
     });
   }
 
-  // Alternativer Titelbegriff je nach Produkt
+  // Suchbegriff-Titel (was Käufer wirklich tippen)
+  const TITLES = {
+    'koje-6':  'Glaswaschtisch mit Unterschrank',
+    'koje-14': 'Glaswaschtisch mit Unterschrank',
+    'koje-17': 'Badmöbel Set komplett',
+    'koje-23': 'Waschtisch mit Unterschrank',
+    'koje-5':  'Doppelwaschtisch XXL',
+    'koje-24': 'Doppelwaschtisch Aufsatzbecken',
+    'koje-25': 'Badmöbel Set mit Hochschrank',
+    'koje-1':  'Waschtisch mit Unterschrank',
+    'koje-9':  'Badmöbel Set komplett',
+    'koje-21': 'Doppelwaschtisch kompakt',
+  };
+
+  // Alt-Begriff für Überschrift im Text (anderer Suchbegriff)
   const ALT_TERMS = {
     'koje-6':  'Waschbecken mit Unterschrank',
     'koje-14': 'Waschbecken mit Unterschrank',
-    'koje-17': 'Badmöbel Set komplett',
-    'koje-23': 'Badmöbel Set komplett',
+    'koje-17': 'Badezimmermöbel Set komplett',
+    'koje-23': 'Waschbecken mit Unterschrank',
     'koje-5':  'Doppelwaschbecken XXL',
-    'koje-24': 'Doppelwaschbecken Unterschrank',
-    'koje-25': 'Badmöbel Set mit Hochschrank',
+    'koje-24': 'Doppelwaschbecken mit Unterschrank',
+    'koje-25': 'Badezimmermöbel mit Hochschrank',
     'koje-1':  'Waschbecken mit Unterschrank',
-    'koje-9':  'Badmöbel Set komplett',
+    'koje-9':  'Badezimmermöbel Set komplett',
     'koje-21': 'Doppelwaschbecken kompakt',
   };
 
   function buildTitle(p, id) {
-    const alt = ALT_TERMS[id] || 'Waschbecken mit Unterschrank';
-    // Haupttitel
-    const t1 = `${p.title} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK`;
-    // Alternativer Titel mit anderen Suchbegriffen
-    const t2 = `${alt} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK`;
-    return { main: t1, alt: t2 };
+    const term = TITLES[id] || 'Waschtisch mit Unterschrank';
+    return { main: `${term} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK` };
   }
 
   function buildText(p, id) {
