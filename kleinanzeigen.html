@@ -153,7 +153,9 @@
     const specs = p.specs.map(s => `• ${s[0]}: ${s[1]}`).join('\n');
     const alt   = ALT_TERMS[id] || 'Waschbecken mit Unterschrank';
 
-    let text = `== ${alt} ${p.width} ==\n\nAusstellungsstück – unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Softclose, Selbsteinzug und Dämpfung\n\nUmfang:\n${specs}`;
+    const koje = `Koje ${id.replace('koje-', '')}`;
+
+    let text = `== ${alt} ${p.width} ==\n\n${koje} – Ausstellungsstück, unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Softclose, Selbsteinzug und Dämpfung\n\nUmfang:\n${specs}`;
 
     if (p.condition) text += `\n\n⚠️ ${p.condition}`;
 
@@ -194,7 +196,7 @@
     container.insertAdjacentHTML('beforeend', `
     <div class="product-card">
       <div class="card-header">
-        <h2>${idx+1}. ${p.title} <span style="font-weight:400;opacity:.7">${p.width}</span></h2>
+        <h2>Koje ${id.replace('koje-', '')} &nbsp;·&nbsp; ${p.title} <span style="font-weight:400;opacity:.7">${p.width}</span></h2>
         <span class="badge-discount">–${p.discount}%</span>
         <span class="badge-price">${price} €</span>
       </div>
