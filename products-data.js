@@ -16,7 +16,7 @@ const PRODUCTS = {
 Der Unterbau aus der Serie YOUNG mit integrierten Griffleisten ist matt lackiert in Steinblau (L017K) und zusätzlich mit SILK-Finish veredelt — einer matten Oberfläche mit erhöhtem Schutz gegen Fingerabdrücke und Kratzer.
 
 Ergänzt wird das Ensemble durch den Spiegelschrank CUBE (102,4 cm, Ausführung links) mit neutralweißer Beleuchtung und zusätzlicher Leuchte im Regalteil.`,
-    condition: "Die Lackierung des Waschtisches ist an der Unterseite stellenweise beschädigt, was einfach behoben werden kann — deshalb der extra-reduzierte Preis.",
+    condition: "Am Glaswaschtisch (nicht am Möbel) ist der Lack an der Unterseite stellenweise leicht beschädigt — lässt sich vom Kunden einfach beheben. Deshalb der extra-reduzierte Preis.",
     specs: [
       ["Waschtisch", "Glas 15 mm weiß, gerundet"],
       ["Becken", "Smile Little"],
@@ -304,7 +304,8 @@ const PICKUP_INFO = {
   intro: "Mitnahmepreis bei Selbstabholung gegen Barzahlung in Niefern-Öschelbronn.",
   details: [
     "Unmontiert zum Einladen bereit (1. Stock, gut zugänglich, Einlademöglichkeit direkt vor dem Gebäude)",
-    "Bitte vereinbaren Sie einen Termin und kommen Sie min. zu zweit",
+    "Bitte vereinbaren Sie telefonisch einen Termin vor der Anfahrt — persönliche Besichtigung nur nach Vereinbarung",
+    "Kommen Sie min. zu zweit zur Abholung",
     "Befestigungsmaterial enthalten — Montage denkbar einfach",
     "Armaturen nicht enthalten, ggf. zusätzlich erhältlich",
     "Zwischenverkauf vorbehalten — bitte vorher anrufen oder mailen"
@@ -312,5 +313,5 @@ const PICKUP_INFO = {
   address: "Eutinger Str. 68, 75223 Niefern-Öschelbronn",
   phone: "07141 1421690",
   email: "service@waschplatz-experten.com",
-  hours: "Täglich 8–20 Uhr, auch am Wochenende"
+  hours: "Täglich 8–20 Uhr telefonisch, auch am Wochenende"
 };

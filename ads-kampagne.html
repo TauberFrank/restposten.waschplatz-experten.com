@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Google Ads Kampagne – WPE Restposten Abverkauf</title>
+<style>
+  :root {
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: var(--gray-900); background: var(--gray-50); line-height: 1.6; }
+  a { color: var(--blue); }
+
+  /* NAV */
+  nav { background: var(--gray-900); color: white; padding: 12px 24px; position: sticky; top: 0; z-index: 100; display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  nav .logo { font-weight: 800; color: white; text-decoration: none; margin-right: 12px; font-size: 15px; }
+  nav a { color: #9ca3af; text-decoration: none; font-size: 12px; font-weight: 500; }
+  nav a:hover { color: white; }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* HERO */
+  .hero { background: var(--gray-900); color: white; padding: 40px 24px; margin-bottom: 32px; }
+  .hero .inner { max-width: 1100px; margin: 0 auto; }
+  .hero h1 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+  .hero p { color: #9ca3af; font-size: 15px; }
+  .hero .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .badge { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+  .badge-red { background: var(--red); color: white; }
+  .badge-green { background: var(--green); color: white; }
+  .badge-amber { background: var(--amber); color: white; }
+  .badge-blue { background: var(--blue); color: white; }
+
+  /* SECTIONS */
+  .section { background: white; border-radius: 12px; border: 1px solid var(--gray-200); margin-bottom: 24px; overflow: hidden; }
+  .section-header { background: var(--gray-100); border-bottom: 1px solid var(--gray-200); padding: 16px 20px; display: flex; align-items: center; gap: 10px; }
+  .section-header h2 { font-size: 16px; font-weight: 800; color: var(--gray-900); }
+  .section-header .num { background: var(--gray-900); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .section-body { padding: 20px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--gray-100); text-align: left; padding: 8px 12px; font-weight: 700; color: var(--gray-700); border-bottom: 2px solid var(--gray-200); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--gray-100); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--gray-50); }
+  .val-yes { color: var(--green); font-weight: 700; }
+  .val-no { color: var(--red); font-weight: 700; }
+  .val-warn { color: var(--amber); font-weight: 700; }
+  .val-info { color: var(--blue); font-weight: 700; }
+  .reason { color: var(--gray-500); font-size: 12px; display: block; margin-top: 2px; }
+
+  /* KEYWORD BLOCKS */
+  .ag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .ag-grid { grid-template-columns: 1fr; } }
+  .ag-card { border: 2px solid var(--gray-200); border-radius: 10px; overflow: hidden; }
+  .ag-card-header { padding: 12px 16px; font-weight: 800; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
+  .ag-card-header .cpc { font-size: 11px; font-weight: 600; background: white; padding: 2px 8px; border-radius: 99px; }
+  .ag-card-body { padding: 12px 16px; background: white; }
+  .ag-card.blue .ag-card-header { background: var(--blue-light); color: var(--blue); }
+  .ag-card.green .ag-card-header { background: var(--green-light); color: var(--green); }
+  .ag-card.amber .ag-card-header { background: var(--amber-light); color: var(--amber); }
+  .ag-card.red .ag-card-header { background: var(--red-light); color: var(--red); }
+
+  .kw-list { list-style: none; }
+  .kw-list li { padding: 3px 0; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+  .kw-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .exact::before { background: var(--blue); }
+  .phrase::before { background: var(--green); }
+  .kw-tag { font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; }
+  .kw-tag.exact { background: var(--blue-light); color: var(--blue); }
+  .kw-tag.phrase { background: var(--green-light); color: var(--green); }
+
+  /* ANZEIGEN */
+  .ad-card { border: 1px solid var(--gray-200); border-radius: 10px; padding: 16px; margin-bottom: 16px; background: white; }
+  .ad-card:last-child { margin-bottom: 0; }
+  .ad-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-500); margin-bottom: 10px; }
+  .ad-preview { border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px; background: #fff; margin-bottom: 14px; }
+  .ad-preview .ad-url { color: #1a0dab; font-size: 13px; margin-bottom: 2px; }
+  .ad-preview .ad-title { color: #1a0dab; font-size: 16px; font-weight: 400; margin-bottom: 4px; line-height: 1.4; }
+  .ad-preview .ad-desc { color: var(--gray-700); font-size: 13px; line-height: 1.5; }
+  .hl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px; margin-bottom: 10px; }
+  .hl-item { background: var(--blue-light); border: 1px solid #bfdbfe; border-radius: 6px; padding: 6px 10px; font-size: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .hl-item span { color: var(--gray-500); font-size: 11px; flex-shrink: 0; }
+  .hl-item.over { background: var(--red-light); border-color: #fecaca; }
+  .desc-item { background: var(--green-light); border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 10px; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; gap: 8px; }
+  .desc-item span { color: var(--gray-500); font-size: 11px; flex-shrink: 0; }
+  .desc-item:last-child { margin-bottom: 0; }
+
+  /* NEG KEYWORDS */
+  .neg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .neg-group { background: var(--red-light); border: 1px solid #fecaca; border-radius: 8px; padding: 12px; }
+  .neg-group h4 { font-size: 12px; font-weight: 700; color: var(--red); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .neg-group ul { list-style: none; }
+  .neg-group li { font-size: 12px; color: var(--gray-700); padding: 1px 0; }
+  .neg-group li::before { content: '– '; color: var(--red); font-weight: 700; }
+
+  /* EXTENSIONS */
+  .ext-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .ext-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 14px; background: white; }
+  .ext-card h4 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-500); margin-bottom: 10px; }
+  .ext-card ul { list-style: none; }
+  .ext-card li { font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--gray-100); }
+  .ext-card li:last-child { border-bottom: none; }
+
+  /* TIPS */
+  .tip { border-left: 4px solid; border-radius: 0 8px 8px 0; padding: 12px 16px; margin-bottom: 12px; font-size: 13px; }
+  .tip.red { border-color: var(--red); background: var(--red-light); }
+  .tip.green { border-color: var(--green); background: var(--green-light); }
+  .tip.amber { border-color: var(--amber); background: var(--amber-light); }
+  .tip strong { font-weight: 800; display: block; margin-bottom: 2px; }
+
+  /* LEGEND */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="./index.html">WPE Restposten</a>
+  <a href="#kampagne">Kampagne</a>
+  <a href="#geo">Geo-Targeting</a>
+  <a href="#anzeigengruppen">Anzeigengruppen</a>
+  <a href="#anzeigen">Anzeigen</a>
+  <a href="#negativ">Negativ-Keywords</a>
+  <a href="#extensions">Erweiterungen</a>
+  <a href="#gebote">Gebote</a>
+  <a href="#checkliste">Checkliste</a>
+</nav>
+
+<div class="hero">
+  <div class="inner">
+    <h1>Google Ads Kampagne</h1>
+    <p>WPE Restposten Abverkauf · Selbstabholung 75223 Niefern-Öschelbronn · Radius 100 km</p>
+    <div class="badges">
+      <span class="badge badge-red">Nur Suchnetzwerk</span>
+      <span class="badge badge-green">Kein Broad Match</span>
+      <span class="badge badge-amber">100 km Radius</span>
+      <span class="badge badge-blue">High-Intent only</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===================== KAMPAGNEN-EINSTELLUNGEN ===================== -->
+<div id="kampagne" class="section">
+  <div class="section-header">
+    <div class="num">1</div>
+    <h2>Kampagnen-Einstellungen</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="tip red">
+      <strong>Wenig-Streuverlust-Regel #1</strong>
+      Kein Display-Netzwerk, keine Suchnetzwerk-Partner, kein Broad Match. Nur google.de, nur Suchintention.
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Einstellung</th><th>Wert</th><th>Begründung</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Kampagnenname</strong></td>
+          <td>WPE-Restposten-Abverkauf</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Kampagnentyp</strong></td>
+          <td class="val-info">Suchnetzwerk</td>
+          <td><span class="reason">Kein Display, kein Performance Max → volle Kontrolle</span></td>
+        </tr>
+        <tr>
+          <td><strong>Ziel</strong></td>
+          <td>Ohne Ziel (manuell)</td>
+          <td><span class="reason">Maximale Einstellungsfreiheit, kein automatischer Algorithmus</span></td>
+        </tr>
+        <tr>
+          <td><strong>Suchnetzwerk-Partner</strong></td>
+          <td class="val-no">NEIN – ausschalten</td>
+          <td><span class="reason">Nur google.de – keine Dritt-Websites</span></td>
+        </tr>
+        <tr>
+          <td><strong>Display-Erweiterung</strong></td>
+          <td class="val-no">NEIN – ausschalten</td>
+          <td><span class="reason">Kein Streuverlust auf Websites</span></td>
+        </tr>
+        <tr>
+          <td><strong>Dynamische Suchanzeigen</strong></td>
+          <td class="val-no">NEIN – ausschalten</td>
+          <td><span class="reason">Unkontrollierbar → Streuverlust</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tagesbudget</strong></td>
+          <td>€ 15–20 / Tag</td>
+          <td><span class="reason">Ca. 450–600 €/Monat. Kann jederzeit angepasst werden.</span></td>
+        </tr>
+        <tr>
+          <td><strong>Gebotsstrategie</strong></td>
+          <td class="val-info">Manueller CPC</td>
+          <td><span class="reason">Volle Kontrolle. Nach 30+ Conversions: Target CPA testen</span></td>
+        </tr>
+        <tr>
+          <td><strong>Optimierter CPC</strong></td>
+          <td class="val-no">NEIN – ausschalten</td>
+          <td><span class="reason">Automatische Gebotserhöhung umgehen</span></td>
+        </tr>
+        <tr>
+          <td><strong>Keyword-Übereinstimmung</strong></td>
+          <td class="val-green">Exakt + Wortgruppe</td>
+          <td><span class="reason">KEIN weitgehend passend – wichtigste Einstellung gegen Streuverlust!</span></td>
+        </tr>
+        <tr>
+          <td><strong>Anzeigenrotation</strong></td>
+          <td>Optimieren</td>
+          <td><span class="reason">Beste Anzeige bevorzugen</span></td>
+        </tr>
+        <tr>
+          <td><strong>Anzeigenplanung</strong></td>
+          <td class="val-green">Mo–So, 08:00–20:00 Uhr</td>
+          <td><span class="reason">Kein Geld verschwenden wenn niemand erreichbar ist</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sprache</strong></td>
+          <td>Deutsch</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><strong>Standort-Option</strong></td>
+          <td>Personen IM Zielgebiet</td>
+          <td><span class="reason">NICHT „zeigt Interesse" – nur echte Nutzer in der Region</span></td>
+        </tr>
+        <tr>
+          <td><strong>URL-Parameter</strong></td>
+          <td>utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=restposten</td>
+          <td><span class="reason">Tracking in Analytics</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== GEO-TARGETING ===================== -->
+<div id="geo" class="section">
+  <div class="section-header">
+    <div class="num">2</div>
+    <h2>Geo-Targeting – 100 km Radius um 75223 Niefern-Öschelbronn</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="tip amber">
+      <strong>Einstellung in Google Ads</strong>
+      Kampagne → Einstellungen → Standorte → Radius → „75223 Niefern-Öschelbronn" → 100 km eingeben.
+      Darunter: „Personen in meinen Zielorten" (nicht „Interesse an meinen Zielorten")!
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Stadt</th><th>Entfernung</th><th>Einwohner (ca.)</th><th>Geo-Gebot</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Pforzheim</strong></td><td>7 km</td><td>125.000</td><td class="val-green">+30 %</td></tr>
+        <tr><td>Mühlacker</td><td>8 km</td><td>26.000</td><td class="val-green">+30 %</td></tr>
+        <tr><td>Nagold</td><td>22 km</td><td>22.000</td><td class="val-green">+20 %</td></tr>
+        <tr><td>Calw</td><td>25 km</td><td>24.000</td><td class="val-green">+20 %</td></tr>
+        <tr><td>Karlsruhe</td><td>35 km</td><td>315.000</td><td>0 %</td></tr>
+        <tr><td>Bruchsal</td><td>38 km</td><td>45.000</td><td>0 %</td></tr>
+        <tr><td>Rastatt</td><td>42 km</td><td>50.000</td><td>0 %</td></tr>
+        <tr><td>Stuttgart</td><td>40 km</td><td>635.000</td><td>0 %</td></tr>
+        <tr><td>Böblingen / Sindelfingen</td><td>43 km</td><td>80.000</td><td>0 %</td></tr>
+        <tr><td>Vaihingen/Enz</td><td>30 km</td><td>30.000</td><td>0 %</td></tr>
+        <tr><td>Heilbronn</td><td>65 km</td><td>130.000</td><td class="val-warn">–10 %</td></tr>
+        <tr><td>Tübingen / Reutlingen</td><td>60 km</td><td>180.000</td><td class="val-warn">–10 %</td></tr>
+        <tr><td>Baden-Baden</td><td>50 km</td><td>55.000</td><td>0 %</td></tr>
+        <tr><td>Freudenstadt / Horb</td><td>45–55 km</td><td>50.000</td><td>0 %</td></tr>
+        <tr><td>Offenburg</td><td>80 km</td><td>60.000</td><td class="val-warn">–20 %</td></tr>
+        <tr><td>Ludwigsburg / Waiblingen</td><td>50–60 km</td><td>160.000</td><td>0 %</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:16px">
+      <div class="tip green">
+        <strong>Geo-Gebotsanpassungen einrichten</strong>
+        Kampagne → Einstellungen → Standorte → Radius bearbeiten → Gebotsanpassungen pro Zone setzen.
+        Alternativ: Wichtigste Städte als einzelne Standorte mit +30% hinzufügen (zusätzlich zum Radius).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ANZEIGENGRUPPEN ===================== -->
+<div id="anzeigengruppen" class="section">
+  <div class="section-header">
+    <div class="num">3</div>
+    <h2>Anzeigengruppen – 6 Gruppen mit Exact + Phrase Match</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Exact Match [keyword]</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Phrase Match "keyword"</div>
+    </div>
+
+    <div class="tip red">
+      <strong>Wenig-Streuverlust-Regel #2 – Kein Broad Match</strong>
+      Jedes Keyword entweder als [exakt] oder "Wortgruppe" einbuchen. Broad Match (ohne Klammern) komplett vermeiden.
+    </div>
+
+    <div class="ag-grid">
+
+      <!-- AG1 -->
+      <div class="ag-card blue">
+        <div class="ag-card-header">
+          AG 1 · Badmöbel-Abverkauf
+          <span class="cpc">Max CPC: € 1,50</span>
+        </div>
+        <div class="ag-card-body">
+          <ul class="kw-list">
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel abverkauf]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel restposten]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel ausverkauf]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel sonderangebot]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel sonderposten]</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel restposten kaufen"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel abverkauf kaufen"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel schnäppchen kaufen"</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- AG2 -->
+      <div class="ag-card green">
+        <div class="ag-card-header">
+          AG 2 · Waschtisch-Angebote
+          <span class="cpc">Max CPC: € 1,80</span>
+        </div>
+        <div class="ag-card-body">
+          <ul class="kw-list">
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[waschtisch restposten]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[glaswaschtisch kaufen]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[corian waschtisch kaufen]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[waschtisch sonderangebot]</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"glaswaschtisch günstig kaufen"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"waschtisch stark reduziert"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"waschtisch angebot kaufen"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"corian waschtisch günstig"</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- AG3 -->
+      <div class="ag-card amber">
+        <div class="ag-card-header">
+          AG 3 · Doppelwaschtisch
+          <span class="cpc">Max CPC: € 1,80</span>
+        </div>
+        <div class="ag-card-body">
+          <ul class="kw-list">
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[doppelwaschtisch günstig]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[doppelwaschtisch kaufen]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[doppelwaschtisch sonderangebot]</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"doppelwaschtisch günstig kaufen"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"doppelwaschtisch mit unterschrank"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"doppelwaschtisch angebot"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"doppelwaschtisch reduziert"</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- AG4 -->
+      <div class="ag-card blue">
+        <div class="ag-card-header">
+          AG 4 · Badmöbel-Set / Komplettanlage
+          <span class="cpc">Max CPC: € 1,50</span>
+        </div>
+        <div class="ag-card-body">
+          <ul class="kw-list">
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badezimmermöbel günstig kaufen]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel set günstig]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[badmöbel set sonderangebot]</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"bad komplettanlage günstig"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badezimmermöbel set reduziert"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel komplett angebot"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel set stark reduziert"</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- AG5 -->
+      <div class="ag-card green">
+        <div class="ag-card-header">
+          AG 5 · Premium / Italienisch
+          <span class="cpc">Max CPC: € 2,00</span>
+        </div>
+        <div class="ag-card-body">
+          <ul class="kw-list">
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[italienische badmöbel kaufen]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[puntotre badmöbel]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[premium badmöbel günstig]</li>
+            <li class="exact"><span class="kw-tag exact">Exakt</span>[design badmöbel kaufen günstig]</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"italienische badmöbel günstig"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"hochwertige badmöbel reduziert"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"premium badmöbel restposten"</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- AG6 -->
+      <div class="ag-card red">
+        <div class="ag-card-header">
+          AG 6 · Lokal / Regionale Abholung
+          <span class="cpc">Max CPC: € 1,20</span>
+        </div>
+        <div class="ag-card-body">
+          <ul class="kw-list">
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel pforzheim"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel karlsruhe günstig"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel stuttgart günstig"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel nagold"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel heilbronn günstig"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel böblingen"</li>
+            <li class="phrase"><span class="kw-tag phrase">Phrase</span>"badmöbel abholen selbstabholung"</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /ag-grid -->
+  </div>
+</div>
+
+<!-- ===================== ANZEIGEN ===================== -->
+<div id="anzeigen" class="section">
+  <div class="section-header">
+    <div class="num">4</div>
+    <h2>Responsive Suchanzeigen (RSA) – Texte für alle Anzeigengruppen</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="tip green">
+      <strong>Hinweis: Responsive Search Ads (RSA)</strong>
+      Alle Headlines und Descriptions unten in Google Ads eingeben. Google kombiniert automatisch.
+      Zeichenlimit: Headlines max. 30 Zeichen, Descriptions max. 90 Zeichen.
+    </div>
+
+    <!-- AG1 Anzeige -->
+    <div class="ad-card">
+      <div class="ad-label">Anzeigengruppe 1 + 4 – Abverkauf / Komplettanlage</div>
+
+      <div class="ad-preview">
+        <div class="ad-url">restposten.waschplatz-experten.com</div>
+        <div class="ad-title">Badmöbel bis -75% reduziert | Unbenutzte Ausstellungsstücke | Selbstabholung bei Pforzheim</div>
+        <div class="ad-desc">Unbenutzte ital. Badmöbel von Puntotre bis -75%. Corian, Glas, GRESS — Einzelstücke zum Bruchteil des Preises. Tägl. 8–20 Uhr: 07141 1421690</div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase">Headlines (max. 30 Zeichen)</p>
+      <div class="hl-grid">
+        <div class="hl-item">Badmöbel bis -75% reduziert <span>28 Z.</span></div>
+        <div class="hl-item">Unbenutzte Ausstellungsstücke <span>29 Z.</span></div>
+        <div class="hl-item">Selbstabholung bei Pforzheim <span>27 Z.</span></div>
+        <div class="hl-item">Einzelstücke — solange Vorrat <span>29 Z.</span></div>
+        <div class="hl-item">Täglich 8–20 Uhr erreichbar <span>27 Z.</span></div>
+        <div class="hl-item">Termin heute noch sichern <span>25 Z.</span></div>
+        <div class="hl-item">Premium-Badmöbel ab 1.309 € <span>27 Z.</span></div>
+        <div class="hl-item">Puntotre – ital. Manufaktur <span>26 Z.</span></div>
+        <div class="hl-item">Showroom-Räumung Restposten <span>27 Z.</span></div>
+        <div class="hl-item">Abholung 75223 Niefern <span>22 Z.</span></div>
+        <div class="hl-item">Statt bis zu 5.000 € zahlen <span>27 Z.</span></div>
+        <div class="hl-item">Barzahlung — Termin anfragen <span>28 Z.</span></div>
+        <div class="hl-item">Nur noch wenige Stücke frei <span>27 Z.</span></div>
+        <div class="hl-item">Zwischenverkauf vorbehalten <span>27 Z.</span></div>
+        <div class="hl-item">WhatsApp oder Anruf möglich <span>27 Z.</span></div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase">Descriptions (max. 90 Zeichen)</p>
+      <div class="desc-item">Unbenutzte ital. Badmöbel von Puntotre bis -75%. Corian, Glas, GRESS — Einzelstücke. <span>85 Z.</span></div>
+      <div class="desc-item">Nur noch wenige Stücke verfügbar. Bitte vorher anrufen — Zwischenverkauf vorbehalten. <span>85 Z.</span></div>
+      <div class="desc-item">Statt bis zu 12.000 € nur ab 1.309 €. Unbenutzt aus dem Ausstellungsraum. Jetzt sichern! <span>89 Z.</span></div>
+      <div class="desc-item">Selbstabholung in 75223 Niefern-Öschelbronn. Tägl. 8–20 Uhr: 07141 1421690 oder WhatsApp. <span>89 Z.</span></div>
+    </div>
+
+    <!-- AG2+3 Anzeige -->
+    <div class="ad-card">
+      <div class="ad-label">Anzeigengruppe 2 + 3 – Waschtisch / Doppelwaschtisch</div>
+
+      <div class="ad-preview">
+        <div class="ad-url">restposten.waschplatz-experten.com</div>
+        <div class="ad-title">Glaswaschtisch bis -75% | Doppelwaschtisch günstig | Unbenutzt, Selbstabholung</div>
+        <div class="ad-desc">Glaswaschtische, Corian & Doppelwaschtische bis -75%. Unbenutzt, aus dem Showroom. Ab 1.309 €. Nur Selbstabholung — Pforzheim / Stuttgart.</div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase">Headlines (max. 30 Zeichen)</p>
+      <div class="hl-grid">
+        <div class="hl-item">Glaswaschtisch bis -75% <span>22 Z.</span></div>
+        <div class="hl-item">Doppelwaschtisch günstig <span>23 Z.</span></div>
+        <div class="hl-item">Corian Waschtisch Restposten <span>27 Z.</span></div>
+        <div class="hl-item">Waschtisch ab 1.309 € <span>20 Z.</span></div>
+        <div class="hl-item">Unbenutzt aus dem Showroom <span>25 Z.</span></div>
+        <div class="hl-item">Selbstabholung bei Pforzheim <span>27 Z.</span></div>
+        <div class="hl-item">Einzelstücke — jetzt sichern <span>28 Z.</span></div>
+        <div class="hl-item">15 mm Glas, Corian, GRESS <span>24 Z.</span></div>
+        <div class="hl-item">Täglich 8–20 Uhr erreichbar <span>27 Z.</span></div>
+        <div class="hl-item">Termin heute noch sichern <span>25 Z.</span></div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase">Descriptions (max. 90 Zeichen)</p>
+      <div class="desc-item">Glaswaschtische & Corian bis -75% — unbenutzt, aus dem Showroom. Ab 1.309 €. Nur Abholung. <span>90 Z.</span></div>
+      <div class="desc-item">Doppelwaschtische XXL ab 1.904 €. Alle Stücke unbenutzt. Selbstabholung 75223 Niefern. <span>87 Z.</span></div>
+      <div class="desc-item">Wenige Einzelstücke verfügbar — zuerst kommt, zuerst mahlt. Termin: 07141 1421690. <span>83 Z.</span></div>
+    </div>
+
+    <!-- AG5 Anzeige -->
+    <div class="ad-card">
+      <div class="ad-label">Anzeigengruppe 5 – Premium / Italienisch</div>
+
+      <div class="ad-preview">
+        <div class="ad-url">restposten.waschplatz-experten.com</div>
+        <div class="ad-title">Ital. Premium-Badmöbel –75% | Puntotre Ausstellung | Selbstabholung Pforzheim</div>
+        <div class="ad-desc">Puntotre Arredobagno — ital. Manufaktur bis -75%. Glaswaschtische, Corian, GRESS. Unbenutzt. Selbstabholung 75223 Niefern-Öschelbronn.</div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase">Headlines (max. 30 Zeichen)</p>
+      <div class="hl-grid">
+        <div class="hl-item">Ital. Badmöbel bis -75% <span>22 Z.</span></div>
+        <div class="hl-item">Puntotre Arredobagno <span>20 Z.</span></div>
+        <div class="hl-item">Premium-Badmöbel Restposten <span>27 Z.</span></div>
+        <div class="hl-item">Showroom-Räumung Pforzheim <span>25 Z.</span></div>
+        <div class="hl-item">Design-Badmöbel ab 1.309 € <span>25 Z.</span></div>
+        <div class="hl-item">Unbenutzte Manufaktur-Qualität <span>30 Z.</span></div>
+        <div class="hl-item">Selbstabholung bei Pforzheim <span>27 Z.</span></div>
+        <div class="hl-item">Täglich 8–20 Uhr erreichbar <span>27 Z.</span></div>
+      </div>
+
+      <p style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:8px;text-transform:uppercase">Descriptions (max. 90 Zeichen)</p>
+      <div class="desc-item">Puntotre Arredobagno — ital. Manufaktur bis -75%. Glaswaschtische, Corian. Unbenutzt. <span>85 Z.</span></div>
+      <div class="desc-item">Showroom-Räumung: Premium-Einzelstücke zum Bruchteil des Preises. Selbstabholung Pforzheim. <span>90 Z.</span></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== NEGATIV-KEYWORDS ===================== -->
+<div id="negativ" class="section">
+  <div class="section-header">
+    <div class="num">5</div>
+    <h2>Negativ-Keywords – Kampagnenebene (alle Anzeigengruppen)</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="tip red">
+      <strong>Wenig-Streuverlust-Regel #3 – Ausführliche Negativliste</strong>
+      Diese Liste verhindert, dass das Budget für irrelevante Suchanfragen ausgegeben wird.
+      Alle als [Exakt negativ] und "Wortgruppe negativ" einbuchen. Liste monatlich mit Suchbegriffen-Bericht erweitern.
+    </div>
+
+    <div class="neg-grid">
+
+      <div class="neg-group">
+        <h4>Dienstleistungen</h4>
+        <ul>
+          <li>lieferung</li>
+          <li>versand</li>
+          <li>versandkostenfrei</li>
+          <li>montage</li>
+          <li>aufbau</li>
+          <li>einbau</li>
+          <li>handwerker</li>
+          <li>reparatur</li>
+          <li>wartung</li>
+          <li>service techniker</li>
+          <li>installation</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Mitbewerber / Baumarkt</h4>
+        <ul>
+          <li>ikea</li>
+          <li>hornbach</li>
+          <li>obi</li>
+          <li>bauhaus</li>
+          <li>toom</li>
+          <li>hagebau</li>
+          <li>poco</li>
+          <li>roller</li>
+          <li>xxxlutz</li>
+          <li>mömax</li>
+          <li>porta</li>
+          <li>otto</li>
+          <li>amazon</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Falscher Zustand</h4>
+        <ul>
+          <li>gebraucht</li>
+          <li>secondhand</li>
+          <li>second hand</li>
+          <li>gebrauchtmöbel</li>
+          <li>kostenlos</li>
+          <li>gratis</li>
+          <li>umsonst</li>
+          <li>mieten</li>
+          <li>vermieten</li>
+          <li>leihen</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Informationssuchen</h4>
+        <ul>
+          <li>was ist</li>
+          <li>wie funktioniert</li>
+          <li>ratgeber</li>
+          <li>wikipedia</li>
+          <li>wiki</li>
+          <li>anleitung</li>
+          <li>tutorial</li>
+          <li>diy</li>
+          <li>selber machen</li>
+          <li>maße standard</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Jobs / Nicht-Kauf</h4>
+        <ul>
+          <li>stellenangebote</li>
+          <li>ausbildung</li>
+          <li>praktikum</li>
+          <li>jobs</li>
+          <li>karriere</li>
+          <li>bewerbung</li>
+          <li>gehalt</li>
+          <li>weiterbildung</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Nicht verfügbare Produkte</h4>
+        <ul>
+          <li>fliesen</li>
+          <li>badezimmerfliesen</li>
+          <li>armaturen</li>
+          <li>duschwände</li>
+          <li>heizkörper</li>
+          <li>badewanne</li>
+          <li>dusche</li>
+          <li>toilette</li>
+          <li>wc</li>
+          <li>bad sanierung</li>
+          <li>bad renovierung</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Falsche Region</h4>
+        <ul>
+          <li>münchen</li>
+          <li>hamburg</li>
+          <li>berlin</li>
+          <li>frankfurt</li>
+          <li>köln</li>
+          <li>düsseldorf</li>
+          <li>wien</li>
+          <li>zürich</li>
+          <li>online kaufen</li>
+          <li>online bestellen</li>
+        </ul>
+      </div>
+
+      <div class="neg-group">
+        <h4>Sonstiges</h4>
+        <ul>
+          <li>billig</li>
+          <li>billigste</li>
+          <li>günstigste (wenn zu undifferenziert)</li>
+          <li>badplanung</li>
+          <li>badberatung</li>
+          <li>bad planen</li>
+          <li>grundriss</li>
+          <li>3d planung</li>
+          <li>konfigurator</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="tip amber">
+        <strong>Suchbegriffe-Bericht wöchentlich prüfen</strong>
+        Google Ads → Bericht → Suchbegriffe → alle Begriffe prüfen, die nicht zur Kaufabsicht passen → als negativ hinzufügen.
+        So wächst die Negativliste organisch und der Streuverlust sinkt kontinuierlich.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ERWEITERUNGEN ===================== -->
+<div id="extensions" class="section">
+  <div class="section-header">
+    <div class="num">6</div>
+    <h2>Anzeigenerweiterungen (Assets)</h2>
+  </div>
+  <div class="section-body">
+    <div class="ext-grid">
+
+      <div class="ext-card">
+        <h4>Sitelinks (4 Stück)</h4>
+        <ul>
+          <li>Alle Angebote ansehen →<br><small style="color:var(--gray-500)">restposten.waschplatz-experten.com/#produkte</small></li>
+          <li>Jetzt anrufen →<br><small style="color:var(--gray-500)">tel:07141 1421690</small></li>
+          <li>WhatsApp Kontakt →<br><small style="color:var(--gray-500)">wa.me/4971411421690</small></li>
+          <li>Wegbeschreibung →<br><small style="color:var(--gray-500)">Eutinger Str. 68, 75223 Niefern-Öschelbronn</small></li>
+        </ul>
+      </div>
+
+      <div class="ext-card">
+        <h4>Callout-Erweiterungen</h4>
+        <ul>
+          <li>Bis -75% reduziert</li>
+          <li>Unbenutzt &amp; unverbaut</li>
+          <li>Einzelstücke</li>
+          <li>Tägl. 8–20 Uhr</li>
+          <li>Barzahlung</li>
+          <li>Keine Lieferkosten</li>
+          <li>Termin nach Absprache</li>
+          <li>Zwischenverkauf vorbehalten</li>
+        </ul>
+      </div>
+
+      <div class="ext-card">
+        <h4>Anruf-Erweiterung</h4>
+        <ul>
+          <li>Telefon: 07141 1421690</li>
+          <li>Anzeigenplanung: Mo–So 8–20 Uhr</li>
+          <li>Anruf-Tracking: aktivieren</li>
+        </ul>
+      </div>
+
+      <div class="ext-card">
+        <h4>Standort-Erweiterung</h4>
+        <ul>
+          <li>Eutinger Str. 68</li>
+          <li>75223 Niefern-Öschelbronn</li>
+          <li>Google My Business verknüpfen</li>
+        </ul>
+      </div>
+
+      <div class="ext-card">
+        <h4>Preis-Erweiterung</h4>
+        <ul>
+          <li>Glaswaschtisch 103 cm → ab € 1.309</li>
+          <li>Doppelwaschtisch XXL → ab € 1.904</li>
+          <li>Komplettanlage → ab € 2.250</li>
+          <li>Corian Waschtisch → ab € 2.499</li>
+        </ul>
+      </div>
+
+      <div class="ext-card">
+        <h4>Bild-Erweiterungen</h4>
+        <ul>
+          <li>Hauptbild Koje 6 (Glaswaschtisch)</li>
+          <li>Hauptbild Koje 5 (XXL Doppelwaschtisch)</li>
+          <li>Hauptbild GRESS / Corian</li>
+          <li>Mind. 1200×628 px, Querformat</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== GEBOTS-ANPASSUNGEN ===================== -->
+<div id="gebote" class="section">
+  <div class="section-header">
+    <div class="num">7</div>
+    <h2>Gebotsanpassungen</h2>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr><th>Faktor</th><th>Anpassung</th><th>Begründung</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mobilgeräte</td>
+          <td class="val-green">+20 %</td>
+          <td>WhatsApp-CTA auf Mobile besonders stark</td>
+        </tr>
+        <tr>
+          <td>Desktop</td>
+          <td>0 %</td>
+          <td>Neutral starten, nach Daten anpassen</td>
+        </tr>
+        <tr>
+          <td>Tablet</td>
+          <td class="val-warn">–10 %</td>
+          <td>Geringere Konversionsrate erfahrungsgemäß</td>
+        </tr>
+        <tr>
+          <td>Geo: 0–20 km (Pforzheim / direkte Umgebung)</td>
+          <td class="val-green">+30 %</td>
+          <td>Kürzeste Abholstrecke → höchste Abholbereitschaft</td>
+        </tr>
+        <tr>
+          <td>Geo: 20–50 km</td>
+          <td>0 %</td>
+          <td>Normalpreis</td>
+        </tr>
+        <tr>
+          <td>Geo: 50–100 km</td>
+          <td class="val-warn">–20 %</td>
+          <td>Abholbereitschaft sinkt mit Entfernung</td>
+        </tr>
+        <tr>
+          <td>Wochentag Mo–Fr</td>
+          <td>0 %</td>
+          <td>Normal</td>
+        </tr>
+        <tr>
+          <td>Sa–So</td>
+          <td class="val-green">+15 %</td>
+          <td>Abholbereitschaft am Wochenende höher</td>
+        </tr>
+        <tr>
+          <td>08:00–12:00 Uhr</td>
+          <td class="val-green">+10 %</td>
+          <td>Recherche morgens, Entscheidung am Vormittag</td>
+        </tr>
+        <tr>
+          <td>17:00–20:00 Uhr</td>
+          <td class="val-green">+10 %</td>
+          <td>Abendrecherche nach Feierabend</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== CHECKLISTE ===================== -->
+<div id="checkliste" class="section">
+  <div class="section-header">
+    <div class="num">8</div>
+    <h2>Setup-Checkliste vor Go-Live</h2>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Aufgabe</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Google Ads Konto erstellen / einloggen</td><td>☐</td></tr>
+        <tr><td>2</td><td>Suchnetzwerk-Kampagne anlegen (kein Performance Max!)</td><td>☐</td></tr>
+        <tr><td>3</td><td>Display-Netzwerk und Suchnetzwerk-Partner deaktivieren</td><td>☐</td></tr>
+        <tr><td>4</td><td>Standort: Radius 100 km um 75223 Niefern-Öschelbronn</td><td>☐</td></tr>
+        <tr><td>5</td><td>Standortoption: „Personen IM Zielgebiet" (nicht Interesse!)</td><td>☐</td></tr>
+        <tr><td>6</td><td>Anzeigenplanung: Mo–So 08:00–20:00 Uhr</td><td>☐</td></tr>
+        <tr><td>7</td><td>Tagesbudget: € 15–20 festlegen</td><td>☐</td></tr>
+        <tr><td>8</td><td>Gebotsstrategie: Manueller CPC, optimierter CPC deaktivieren</td><td>☐</td></tr>
+        <tr><td>9</td><td>Alle 6 Anzeigengruppen mit Keywords anlegen</td><td>☐</td></tr>
+        <tr><td>10</td><td>Nur Exact + Phrase Match — kein Broad Match</td><td>☐</td></tr>
+        <tr><td>11</td><td>Negativ-Keywords Kampagnenebene eingeben</td><td>☐</td></tr>
+        <tr><td>12</td><td>RSA-Anzeigen (Headlines + Descriptions) je Gruppe</td><td>☐</td></tr>
+        <tr><td>13</td><td>Sitelinks, Callouts, Anruf-Erweiterung einrichten</td><td>☐</td></tr>
+        <tr><td>14</td><td>Standort-Erweiterung mit Google My Business verknüpfen</td><td>☐</td></tr>
+        <tr><td>15</td><td>URL-Parameter: utm_source=google&amp;utm_medium=cpc einsetzen</td><td>☐</td></tr>
+        <tr><td>16</td><td>Google Analytics (oder Ahrefs Web Analytics) verknüpfen</td><td>☐</td></tr>
+        <tr><td>17</td><td>Conversion-Tracking einrichten (Anruf-Klick / WhatsApp-Klick)</td><td>☐</td></tr>
+        <tr><td>18</td><td>Gebotsanpassungen (Mobile +20%, Wochenende +15%) setzen</td><td>☐</td></tr>
+        <tr><td>19</td><td>Nach 7 Tagen: Suchbegriffe-Bericht prüfen → Negativliste erweitern</td><td>☐</td></tr>
+        <tr><td>20</td><td>Verkaufte Produkte: Anzeige pausieren oder aus Texten entfernen</td><td>☐</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:20px">
+      <div class="tip amber">
+        <strong>Monatliche Optimierungsroutine</strong>
+        1. Suchbegriffe-Bericht → neue Negativkeywords hinzufügen<br>
+        2. Anzeigengruppen-Performance → schwache Keywords pausieren<br>
+        3. Gebotsanpassungen nach Daten nachjustieren<br>
+        4. Verkaufte Produkte: entsprechende Keywords pausieren oder Texte aktualisieren
+      </div>
+      <div class="tip green">
+        <strong>Erwartet: Kosten pro Kontakt</strong>
+        Bei CPC € 0,80–2,00 und CTR ~5–8 %: ca. 12–25 € Werbeausgabe pro ernsthaftem Kontakt (Anruf/WhatsApp).
+        Bei Produktpreisen von € 1.309–2.899 ist das ein sehr gutes Verhältnis.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<footer style="background:var(--gray-900);color:#9ca3af;text-align:center;padding:20px;font-size:12px;margin-top:32px;">
+  WPE Restposten Abverkauf · Google Ads Kampagnen-Dokument · Intern · Stand April 2026
+</footer>
+
+</body>
+</html>
