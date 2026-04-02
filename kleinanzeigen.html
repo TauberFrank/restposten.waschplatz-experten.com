@@ -9,133 +9,110 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; background: #f3f4f6; color: #111827; line-height: 1.6; }
 
-  /* NAV */
   nav { background: #111827; color: white; padding: 12px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   nav .logo { font-weight: 800; font-size: 15px; color: white; text-decoration: none; }
   nav a { color: #9ca3af; font-size: 12px; text-decoration: none; }
   nav a:hover { color: white; }
-  nav .tip { margin-left: auto; background: #374151; border-radius: 6px; padding: 5px 12px; font-size: 11px; color: #d1d5db; }
 
   .container { max-width: 1000px; margin: 0 auto; padding: 28px 16px; }
 
-  /* STANDARD-FOOTER-BLOCK */
-  .footer-block { background: white; border-radius: 12px; border: 2px solid #e5e7eb; padding: 20px; margin-bottom: 32px; }
-  .footer-block h2 { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7280; margin-bottom: 12px; }
-  .copy-area { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; font-size: 13px; white-space: pre-line; color: #374151; line-height: 1.8; position: relative; }
-  .copy-btn { position: absolute; top: 10px; right: 10px; background: #2563eb; color: white; border: none; border-radius: 6px; padding: 5px 14px; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+  .footer-block { background: white; border-radius: 12px; border: 2px solid #e5e7eb; padding: 20px; margin-bottom: 32px; position: relative; }
+  .footer-block h2 { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #6b7280; margin-bottom: 10px; }
+  .copy-area { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; padding-right: 110px; font-size: 13px; white-space: pre-line; color: #374151; line-height: 1.9; }
+  .copy-btn { position: absolute; top: 20px; right: 20px; background: #2563eb; color: white; border: none; border-radius: 6px; padding: 6px 16px; font-size: 12px; font-weight: 700; cursor: pointer; }
   .copy-btn:hover { background: #1d4ed8; }
   .copy-btn.copied { background: #16a34a; }
 
-  /* PRODUCT CARDS */
   .product-card { background: white; border-radius: 14px; border: 2px solid #e5e7eb; margin-bottom: 28px; overflow: hidden; }
-  .card-header { background: #111827; color: white; padding: 16px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .card-header h2 { font-size: 17px; font-weight: 900; flex: 1; }
-  .badge-price { background: #dc2626; color: white; border-radius: 8px; padding: 5px 14px; font-weight: 800; font-size: 14px; }
-  .badge-discount { background: #374151; color: #fbbf24; border-radius: 8px; padding: 5px 10px; font-weight: 800; font-size: 12px; }
+  .card-header { background: #111827; color: white; padding: 14px 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .card-header h2 { font-size: 16px; font-weight: 900; flex: 1; }
+  .badge-price { background: #dc2626; color: white; border-radius: 8px; padding: 4px 12px; font-weight: 800; font-size: 14px; }
+  .badge-discount { background: #374151; color: #fbbf24; border-radius: 8px; padding: 4px 10px; font-weight: 800; font-size: 12px; }
   .card-body { padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   @media(max-width: 680px) { .card-body { grid-template-columns: 1fr; } }
 
-  /* FELDER */
-  .field { margin-bottom: 16px; }
+  .field { margin-bottom: 14px; }
   .field:last-child { margin-bottom: 0; }
-  .field-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #6b7280; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
-  .copy-area-inline { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 14px; font-size: 13px; white-space: pre-line; color: #374151; line-height: 1.7; position: relative; padding-right: 90px; }
-  .copy-btn-sm { position: absolute; top: 8px; right: 8px; background: #2563eb; color: white; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  .field-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #6b7280; margin-bottom: 5px; }
+  .char-count { font-weight: 400; color: #9ca3af; }
+  .char-count.over { color: #dc2626; font-weight: 700; }
+
+  .copy-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 12px; font-size: 12.5px; color: #374151; line-height: 1.7; position: relative; }
+  .copy-box.multiline { padding-bottom: 42px; }
+  .copy-btn-sm { background: #2563eb; color: white; border: none; border-radius: 6px; padding: 4px 12px; font-size: 11px; font-weight: 700; cursor: pointer; }
   .copy-btn-sm:hover { background: #1d4ed8; }
   .copy-btn-sm.copied { background: #16a34a; }
+  .btn-row { margin-top: 10px; display: flex; gap: 6px; }
 
   /* BILDER */
-  .images-section { }
   .images-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #6b7280; margin-bottom: 8px; }
   .images-hint { font-size: 11px; color: #9ca3af; margin-bottom: 10px; }
-  .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 6px; }
-  .img-wrap { position: relative; border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; cursor: grab; transition: border-color 0.15s, transform 0.1s; aspect-ratio: 4/3; }
-  .img-wrap:hover { border-color: #2563eb; transform: scale(1.03); }
-  .img-wrap:active { cursor: grabbing; transform: scale(0.97); }
-  .img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
-  .img-num { position: absolute; bottom: 4px; right: 5px; background: rgba(0,0,0,0.6); color: white; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px; pointer-events: none; }
-  .img-main-badge { position: absolute; top: 4px; left: 4px; background: #dc2626; color: white; font-size: 9px; font-weight: 800; padding: 1px 5px; border-radius: 4px; pointer-events: none; }
+  .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
+  .img-item { border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; background: #f9fafb; }
+  .img-item:hover { border-color: #2563eb; }
+  .img-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .img-item a { display: block; background: #f3f4f6; text-align: center; padding: 5px 4px; font-size: 11px; font-weight: 700; color: #2563eb; text-decoration: none; border-top: 1px solid #e5e7eb; }
+  .img-item a:hover { background: #2563eb; color: white; }
+  .img-main { border-color: #dc2626; }
+  .img-main-tag { background: #dc2626; color: white; font-size: 10px; font-weight: 800; padding: 2px 6px; text-align: center; }
 
-  /* CONDITION BANNER */
   .condition-banner { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 12px; font-size: 12px; color: #92400e; margin-top: 10px; }
-  .condition-banner strong { color: #78350f; }
-
-  /* DIVIDER */
-  .divider { height: 1px; background: #f3f4f6; margin: 16px 0; }
 </style>
 </head>
 <body>
 
 <nav>
   <a class="logo" href="./index.html">WPE Restposten</a>
-  <a href="./index.html">← Zurück zur Seite</a>
-  <div class="tip">Bilder: in Kleinanzeigen-Uploadfeld ziehen · Texte: Kopieren-Button</div>
+  <a href="./index.html">← Zurück</a>
 </nav>
 
 <div class="container">
 
-  <!-- STANDARD-KONTAKT-FOOTER -->
   <div class="footer-block">
-    <h2>Standard-Kontakttext (für jede Anzeige ans Ende)</h2>
+    <h2>Kontakttext — ans Ende jeder Anzeige</h2>
     <div class="copy-area" id="footer-text">📍 75223 Niefern-Öschelbronn (Raum Pforzheim / Karlsruhe / Stuttgart)
-🚗 Nur Selbstabholung · Barzahlung vor Ort
-📞 Bitte vor der Anfahrt unbedingt telefonisch Termin vereinbaren!
-✉️ Anfragen per PN oder Telefon willkommen
-
-Weitere Angebote: restposten.waschplatz-experten.com</div>
-    <button class="copy-btn" onclick="copyText('footer-text', this)">Kopieren</button>
+🚗 Nur Selbstabholung · Barzahlung
+📞 Tel. 01733435961 – bitte vor Anfahrt anrufen!
+✉️ Anfragen per PN oder Telefon</div>
+    <button class="copy-btn" onclick="copyById('footer-text', this)">Kopieren</button>
   </div>
 
-  <!-- PRODUKTE werden per JS eingefügt -->
   <div id="products-container"></div>
 
 </div>
 
 <script src="./products-data.js"></script>
 <script>
-  function copyText(id, btn) {
-    const el = document.getElementById(id);
-    const text = el ? el.innerText : '';
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✓ Kopiert!';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
-    });
-  }
+  const MAX_TITLE = 65;
 
-  function copyDirect(text, btn) {
-    navigator.clipboard.writeText(text).then(() => {
-      btn.textContent = '✓ Kopiert!';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Kopieren'; btn.classList.remove('copied'); }, 2000);
-    });
-  }
+  const FOOTER = `\n\n📍 75223 Niefern-Öschelbronn (Raum Pforzheim / Karlsruhe / Stuttgart)\n🚗 Nur Selbstabholung · Barzahlung\n📞 Tel. 01733435961 – bitte vor Anfahrt anrufen!\n✉️ Anfragen per PN oder Telefon`;
 
-  const FOOTER = `\n\n📍 75223 Niefern-Öschelbronn (Raum Pforzheim / Karlsruhe / Stuttgart)\n🚗 Nur Selbstabholung · Barzahlung vor Ort\n📞 Bitte vor der Anfahrt unbedingt telefonisch Termin vereinbaren!\n✉️ Anfragen per PN oder Telefon willkommen\n\nWeitere Angebote: restposten.waschplatz-experten.com`;
+  function copyById(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => feedback(btn));
+  }
+  function copyStr(text, btn) {
+    navigator.clipboard.writeText(text).then(() => feedback(btn));
+  }
+  function feedback(btn) {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Kopiert!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  }
 
   function buildTitle(p) {
-    return `${p.title} ${p.width} – ${p.discount}% reduziert | Ausstellungsstück Puntotre`;
+    return `${p.title} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK`;
   }
 
-  function buildText(id, p) {
+  function buildText(p) {
     const price = p.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2});
     const orig  = p.originalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    const specs = p.specs.map(s => `• ${s[0]}: ${s[1]}`).join('\n');
 
-    // Specs als Aufzählung
-    const specsText = p.specs.map(s => `• ${s[0]}: ${s[1]}`).join('\n');
+    let text = `Ausstellungsstück – unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Hochwertige Möbel mit Softclose, Selbsteinzug und Dämpfung\n\nUmfang:\n${specs}`;
 
-    let text = `✅ UNBENUTZT – nie installiert, direkt aus dem Showroom
-📐 ${p.width} breit · Ital. Manufaktur Puntotre Arredobagno
-💶 Statt ${orig} € → nur ${price} € (–${p.discount} %)
-
-${p.description.split('\n\n')[0]}
-
-Lieferumfang:
-${specsText}`;
-
-    if (p.condition) {
-      text += `\n\n⚠️ Hinweis: ${p.condition}`;
-    }
+    if (p.condition) text += `\n\n⚠️ ${p.condition}`;
 
     text += FOOTER;
     return text;
@@ -148,57 +125,63 @@ ${specsText}`;
     if (!p) return;
 
     const titleText = buildTitle(p);
-    const bodyText  = buildText(id, p);
+    const bodyText  = buildText(p);
     const price     = p.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2});
-    const orig      = p.originalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    const tLen      = titleText.length;
+    const tClass    = tLen > MAX_TITLE ? 'over' : '';
 
-    // Images
-    const imgHTML = p.images.map((src, i) => `
-      <div class="img-wrap" draggable="true" title="Bild ${i+1} – in Uploadfeld ziehen">
-        <img src="${src}" alt="${p.title} Bild ${i+1}" loading="lazy">
-        ${i === 0 ? '<span class="img-main-badge">Titel</span>' : ''}
-        <span class="img-num">${i+1}</span>
-      </div>`).join('');
+    const imgHTML = p.images.map((src, i) => {
+      const fname = `${id}-${i+1}.webp`;
+      return `
+        <div class="img-item${i === 0 ? ' img-main' : ''}">
+          ${i === 0 ? '<div class="img-main-tag">Titelbild</div>' : ''}
+          <img src="${src}" alt="Bild ${i+1}" loading="lazy">
+          <a href="${src}" download="${fname}">↓ Bild ${i+1}</a>
+        </div>`;
+    }).join('');
 
     const condBanner = p.condition
-      ? `<div class="condition-banner"><strong>⚠️ Zustandshinweis:</strong> ${p.condition}</div>`
+      ? `<div class="condition-banner"><strong>⚠️ Zustand:</strong> ${p.condition}</div>`
       : '';
 
-    const titleId = `title-${id}`;
-    const textId  = `text-${id}`;
+    const bodyHtml = bodyText.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
 
-    const html = `
+    container.insertAdjacentHTML('beforeend', `
     <div class="product-card">
       <div class="card-header">
-        <h2>${idx + 1}. ${p.title} <span style="font-weight:400;opacity:0.7">${p.width}</span></h2>
-        <span class="badge-discount">–${p.discount} %</span>
+        <h2>${idx+1}. ${p.title} <span style="font-weight:400;opacity:.7">${p.width}</span></h2>
+        <span class="badge-discount">–${p.discount}%</span>
         <span class="badge-price">${price} €</span>
       </div>
       <div class="card-body">
         <div>
           <div class="field">
-            <div class="field-label">Anzeigentitel <span style="font-weight:400;color:#9ca3af">(${buildTitle(p).length} Zeichen)</span></div>
-            <div class="copy-area-inline" id="${titleId}">${titleText}<button class="copy-btn-sm" onclick="copyDirect(${JSON.stringify(titleText)}, this)">Kopieren</button></div>
+            <div class="field-label">Titel <span class="char-count ${tClass}">${tLen} / ${MAX_TITLE} Zeichen</span></div>
+            <div class="copy-box">${titleText.replace(/&/g,'&amp;')}
+              <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr(${JSON.stringify(titleText)}, this)">Kopieren</button></div>
+            </div>
           </div>
           <div class="field">
             <div class="field-label">Anzeigentext</div>
-            <div class="copy-area-inline" style="padding-right:14px;font-size:12px">${bodyText.replace(/\n/g, '<br>')}<br><br><button class="copy-btn-sm" style="position:static;margin-top:4px" onclick="copyDirect(${JSON.stringify(bodyText)}, this)">Kopieren</button></div>
+            <div class="copy-box multiline">${bodyHtml}
+              <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr(${JSON.stringify(bodyText)}, this)">Kopieren</button></div>
+            </div>
           </div>
           <div class="field">
-            <div class="field-label">Preis für Anzeige</div>
-            <div class="copy-area-inline">${price} €<button class="copy-btn-sm" onclick="copyDirect('${price}', this)">Kopieren</button></div>
+            <div class="field-label">Preis</div>
+            <div class="copy-box">${price} €
+              <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr('${price}', this)">Kopieren</button></div>
+            </div>
           </div>
           ${condBanner}
         </div>
-        <div class="images-section">
+        <div>
           <div class="images-label">Bilder (${p.images.length} Stück)</div>
-          <div class="images-hint">In Kleinanzeigen-Uploadfeld ziehen · oder Rechtsklick → Speichern unter</div>
+          <div class="images-hint">↓ Download-Link anklicken → dann in Kleinanzeigen hochladen</div>
           <div class="images-grid">${imgHTML}</div>
         </div>
       </div>
-    </div>`;
-
-    container.insertAdjacentHTML('beforeend', html);
+    </div>`);
   });
 </script>
 </body>

@@ -306,6 +306,7 @@ const PICKUP_INFO = {
     "Unmontiert zum Einladen bereit (1. Stock, gut zugänglich, Einlademöglichkeit direkt vor dem Gebäude)",
     "Bitte vereinbaren Sie telefonisch einen Termin vor der Anfahrt — persönliche Besichtigung nur nach Vereinbarung",
     "Kommen Sie min. zu zweit zur Abholung",
+    "Hochwertige Möbel mit Softclose, Selbsteinzug und Dämpfung",
     "Befestigungsmaterial enthalten — Montage denkbar einfach",
     "Armaturen nicht enthalten, ggf. zusätzlich erhältlich",
     "Zwischenverkauf vorbehalten — bitte vorher anrufen oder mailen"
