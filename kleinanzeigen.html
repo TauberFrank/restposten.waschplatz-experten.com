@@ -109,8 +109,8 @@
     images.forEach((src, i) => {
       setTimeout(() => {
         const a = document.createElement('a');
-        a.href = src;
-        a.download = `${id}-${i+1}.webp`;
+        a.href = src.replace('.webp', '.jpg');
+        a.download = `${id}-${i+1}.jpg`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -147,12 +147,13 @@
     return { main: t1, alt: t2 };
   }
 
-  function buildText(p) {
+  function buildText(p, id) {
     const price = p.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2});
     const orig  = p.originalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 0});
     const specs = p.specs.map(s => `• ${s[0]}: ${s[1]}`).join('\n');
+    const alt   = ALT_TERMS[id] || 'Waschbecken mit Unterschrank';
 
-    let text = `Ausstellungsstück – unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Hochwertige Möbel mit Softclose, Selbsteinzug und Dämpfung\n\nUmfang:\n${specs}`;
+    let text = `== ${alt} ${p.width} ==\n\nAusstellungsstück – unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Softclose, Selbsteinzug und Dämpfung\n\nUmfang:\n${specs}`;
 
     if (p.condition) text += `\n\n⚠️ ${p.condition}`;
 
@@ -168,21 +169,19 @@
 
     const titles    = buildTitle(p, id);
     const titleText = titles.main;
-    const altTitle  = titles.alt;
-    const bodyText  = buildText(p);
+    const bodyText  = buildText(p, id);
     const price     = p.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2});
     const tLen      = titleText.length;
     const tClass    = tLen > MAX_TITLE ? 'over' : '';
-    const aLen      = altTitle.length;
-    const aClass    = aLen > MAX_TITLE ? 'over' : '';
 
     const imgHTML = p.images.map((src, i) => {
-      const fname = `${id}-${i+1}.webp`;
+      const jpgSrc = src.replace('.webp', '.jpg');
+      const fname  = `${id}-${i+1}.jpg`;
       return `
         <div class="img-item${i === 0 ? ' img-main' : ''}">
           ${i === 0 ? '<div class="img-main-tag">Titelbild</div>' : ''}
           <img src="${src}" alt="Bild ${i+1}" loading="lazy">
-          <a href="${src}" download="${fname}">↓ Bild ${i+1}</a>
+          <a href="${jpgSrc}" download="${fname}">↓ Bild ${i+1}</a>
         </div>`;
     }).join('');
 
@@ -202,15 +201,9 @@
       <div class="card-body">
         <div>
           <div class="field">
-            <div class="field-label">Titel A <span class="char-count ${tClass}">${tLen} / ${MAX_TITLE} Z.</span></div>
+            <div class="field-label">Titel <span class="char-count ${tClass}">${tLen} / ${MAX_TITLE} Z.</span></div>
             <div class="copy-box">${titleText.replace(/&/g,'&amp;')}
               <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr(${JSON.stringify(titleText)}, this)">Kopieren</button></div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="field-label">Titel B – alternative Suchbegriffe <span class="char-count ${aClass}">${aLen} / ${MAX_TITLE} Z.</span></div>
-            <div class="copy-box">${altTitle.replace(/&/g,'&amp;')}
-              <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr(${JSON.stringify(altTitle)}, this)">Kopieren</button></div>
             </div>
           </div>
           <div class="field">
