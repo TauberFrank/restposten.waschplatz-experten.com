@@ -301,7 +301,7 @@ const PRODUCT_ORDER = [
 
 // Abholungs-Info (identisch für alle Produkte)
 const PICKUP_INFO = {
-  intro: "Mitnahmepreis bei Selbstabholung gegen Barzahlung in Ludwigsburg.",
+  intro: "Mitnahmepreis bei Selbstabholung gegen Barzahlung in Niefern-Öschelbronn.",
   details: [
     "Unmontiert zum Einladen bereit (1. Stock, gut zugänglich, Einlademöglichkeit direkt vor dem Gebäude)",
     "Bitte vereinbaren Sie einen Termin und kommen Sie min. zu zweit",
@@ -309,7 +309,7 @@ const PICKUP_INFO = {
     "Armaturen nicht enthalten, ggf. zusätzlich erhältlich",
     "Zwischenverkauf vorbehalten — bitte vorher anrufen oder mailen"
   ],
-  address: "Kammererstraße 8, 71636 Ludwigsburg",
+  address: "Eutinger Str. 68, 75223 Niefern-Öschelbronn",
   phone: "07141 1421690",
   email: "service@waschplatz-experten.com",
   hours: "Täglich 8–20 Uhr, auch am Wochenende"
