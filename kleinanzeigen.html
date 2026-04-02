@@ -159,15 +159,59 @@
     return { main: `${term} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK` };
   }
 
+  // 2 Sätze je Produkt: Serie + Material (Quelle: waschplatz-experten.com)
+  const DESCRIPTIONS = {
+    'koje-6': {
+      serie:    'Die YOUNG-Serie hat integrierte Griffleisten, hochwertige GRASS-Auszugssysteme mit Soft-Closing und Einzugsdämpfung. Sie ist in nahezu beliebigen Farben und Konfigurationen kombinierbar.',
+      material: 'Der 15 mm starke Glaswaschtisch ist robust, pflegeleicht und mit verschiedenen Beckenformen erhältlich. Als fugenloser Waschtisch bietet er eine hygienische und optisch nahtlose Lösung.'
+    },
+    'koje-14': {
+      serie:    'Die Accademia DeLuxe verbindet klassische Formen mit zeitgenössischen Akzenten und steht für die Spitze des Puntotre-Sortiments. Oberflächen — Echtholzfurnier, Laminat oder Lack — werden in maximaler Qualität gefertigt.',
+      material: 'Der 15 mm starke Glaswaschtisch ist robust, pflegeleicht und mit verschiedenen Beckenformen erhältlich. Als fugenloser Waschtisch bietet er eine hygienische und optisch nahtlose Lösung.'
+    },
+    'koje-17': {
+      serie:    'Die LeCornici-Serie kombiniert elegante Rahmenoptik mit über 400 verfügbaren Farbtönen und Dekoren. Die markanten Rahmen verleihen dem Waschplatz ein klares, architektonisches Erscheinungsbild.',
+      material: 'SolidTek ist ein durchgefärbtes Solid-Surface-Material mit matter Oberfläche — kratz-, flecken- und wasserresistent. Das Material ist chemikalien- und haarfärbemittelresistent und damit ideal für den Badalltag.'
+    },
+    'koje-23': {
+      serie:    'Die MODULA-Serie zeichnet sich durch präzise 45°-Gehrungsschnitte aus, die ein optisch nahtloses Rahmendesign in exklusiver 3D-Optik ergeben. Erhältlich mit Push-to-Open oder integrierten Griffleisten — in über 400 Farben.',
+      material: 'SolidTek ist ein durchgefärbtes Solid-Surface-Material mit matter Oberfläche — kratz-, flecken- und wasserresistent. Das Material ist chemikalien- und haarfärbemittelresistent und damit ideal für den Badalltag.'
+    },
+    'koje-5': {
+      serie:    'Die Up&Down-Serie hat integrierte Griffleisten und hochwertige GRASS-Auszugssysteme und ist in zahlreichen Laminat-Dekoren konfigurierbar. Sie ist auf individuelle Konfigurationen ausgelegt und mit verschiedenen Waschtisch-Materialien kombinierbar.',
+      material: 'Ocritech ist ein Sanitär-Acryl aus Aluminiumhydroxid und Acrylharz mit seidig-matter, porenfreier Oberfläche. Das Material ist chemikalienresistent und pflegeleicht — oberflächliche Kratzer lassen sich durch Schleifen beheben.'
+    },
+    'koje-24': {
+      serie:    'Die YOUNG-Serie hat integrierte Griffleisten, hochwertige GRASS-Auszugssysteme mit Soft-Closing und Einzugsdämpfung. Sie ist in nahezu beliebigen Farben und Konfigurationen kombinierbar.',
+      material: 'Die Waschtischplatte aus Laminat mit 30°-Gehrung trägt zwei Aufsatzbecken aus hochwertigem Sanitärporzellan. Aufsatzbecken bieten eine leicht reinigbare Waschtischfläche und sind einfach austauschbar.'
+    },
+    'koje-25': {
+      serie:    'Die Vertigo Evolution-Serie ist durch charakteristische Rillenfronten gekennzeichnet, die durch Licht-Schatten-Spiele ein lebendiges Erscheinungsbild erzeugen. Erhältlich in über 50 matten Farben und mehreren Polymer-Oberflächen, wahlweise in gerundeter Form.',
+      material: 'Ocritech ist ein Sanitär-Acryl aus Aluminiumhydroxid und Acrylharz mit seidig-matter, porenfreier Oberfläche. Das Material ist chemikalienresistent und pflegeleicht — oberflächliche Kratzer lassen sich durch Schleifen beheben.'
+    },
+    'koje-1': {
+      serie:    'Die Roma DeLuxe-Serie verbindet klassische Holzoptik und Echtholzfurniere mit moderner Funktionalität und High-End-Auszugssystemen. Sie bietet 50 matte Farben sowie 4 Echtholz-Frontoptionen und ist mit allen Waschtisch-Materialien kombinierbar.',
+      material: 'GRESS besteht aus großformatigen Feinsteinzeug-Platten mit geschlossener, porenfreier Oberfläche — nimmt keinerlei Flüssigkeiten auf und ist schlagfest sowie säurebeständig. Das Material ist 100% mineralisch, dauerhaft wasserundurchlässig und äußerst pflegeleicht.'
+    },
+    'koje-9': {
+      serie:    'Die YOUNG-Serie hat integrierte Griffleisten, hochwertige GRASS-Auszugssysteme mit Soft-Closing und Einzugsdämpfung. Sie ist in nahezu beliebigen Farben und Konfigurationen kombinierbar.',
+      material: 'Ocritech ist ein Sanitär-Acryl aus Aluminiumhydroxid und Acrylharz mit seidig-matter, porenfreier Oberfläche. Das Material ist chemikalienresistent und pflegeleicht — oberflächliche Kratzer lassen sich durch Schleifen beheben.'
+    },
+    'koje-21': {
+      serie:    'Die YOUNG-Serie hat integrierte Griffleisten, hochwertige GRASS-Auszugssysteme mit Soft-Closing und Einzugsdämpfung. Sie ist in nahezu beliebigen Farben und Konfigurationen kombinierbar.',
+      material: 'Ocritech ist ein Sanitär-Acryl aus Aluminiumhydroxid und Acrylharz mit seidig-matter, porenfreier Oberfläche. Das Material ist chemikalienresistent und pflegeleicht — oberflächliche Kratzer lassen sich durch Schleifen beheben.'
+    },
+  };
+
   function buildText(p, id) {
     const price = p.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2});
     const orig  = p.originalPrice.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 0});
     const specs = p.specs.map(s => `• ${s[0]}: ${s[1]}`).join('\n');
     const alt   = ALT_TERMS[id] || 'Waschbecken mit Unterschrank';
+    const desc  = DESCRIPTIONS[id] || { serie: '', material: '' };
+    const koje  = `Koje ${id.replace('koje-', '')}`;
 
-    const koje = `Koje ${id.replace('koje-', '')}`;
-
-    let text = `== ${alt} ${p.width} ==\n\n${koje} – Ausstellungsstück, unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Softclose, Selbsteinzug und Dämpfung\n\nUmfang:\n${specs}`;
+    let text = `== ${alt} ${p.width} ==\n\n${koje} – Ausstellungsstück, unbenutzt, nie installiert.\nStatt ${orig} € · Nur ${price} € (–${p.discount}%)\n\n✓ Softclose, Selbsteinzug und Dämpfung\n\nZur Möbel-Serie:\n${desc.serie}\n\nZum Waschtisch-Material:\n${desc.material}\n\nUmfang:\n${specs}`;
 
     if (p.condition) text += `\n\n⚠️ ${p.condition}`;
 

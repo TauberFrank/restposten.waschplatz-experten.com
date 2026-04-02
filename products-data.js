@@ -303,7 +303,7 @@ const PRODUCT_ORDER = [
 const PICKUP_INFO = {
   intro: "Mitnahmepreis bei Selbstabholung gegen Barzahlung in Niefern-Öschelbronn.",
   details: [
-    "Unmontiert zum Einladen bereit (1. Stock, gut zugänglich, Einlademöglichkeit direkt vor dem Gebäude)",
+    "Unmontiert zum Einladen bereit (EG, sehr gut zugänglich, Einlademöglichkeit direkt vor dem Gebäude)",
     "Bitte vereinbaren Sie telefonisch einen Termin vor der Anfahrt — persönliche Besichtigung nur nach Vereinbarung",
     "Kommen Sie min. zu zweit zur Abholung",
     "Hochwertige Möbel mit Softclose, Selbsteinzug und Dämpfung",
