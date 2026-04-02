@@ -46,7 +46,10 @@
 
   /* BILDER */
   .images-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: #6b7280; margin-bottom: 8px; }
-  .images-hint { font-size: 11px; color: #9ca3af; margin-bottom: 10px; }
+  .dl-all-btn { display: block; width: 100%; background: #2563eb; color: white; border: none; border-radius: 8px; padding: 10px; font-size: 13px; font-weight: 800; cursor: pointer; margin-bottom: 10px; text-align: center; }
+  .dl-all-btn:hover { background: #1d4ed8; }
+  .dl-all-btn.done { background: #16a34a; }
+  .dl-hint { font-size: 11px; color: #9ca3af; margin-bottom: 10px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 6px; padding: 8px 10px; line-height: 1.6; }
   .images-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
   .img-item { border-radius: 8px; overflow: hidden; border: 2px solid #e5e7eb; background: #f9fafb; }
   .img-item:hover { border-color: #2563eb; }
@@ -101,8 +104,47 @@
     setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
   }
 
-  function buildTitle(p) {
-    return `${p.title} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK`;
+  function downloadAll(images, id, btn) {
+    btn.textContent = '⏳ Wird heruntergeladen…';
+    images.forEach((src, i) => {
+      setTimeout(() => {
+        const a = document.createElement('a');
+        a.href = src;
+        a.download = `${id}-${i+1}.webp`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        if (i === images.length - 1) {
+          setTimeout(() => {
+            btn.textContent = `✓ ${images.length} Bilder heruntergeladen — jetzt in Kleinanzeigen hochladen`;
+            btn.classList.add('done');
+          }, 500);
+        }
+      }, i * 400);
+    });
+  }
+
+  // Alternativer Titelbegriff je nach Produkt
+  const ALT_TERMS = {
+    'koje-6':  'Waschbecken mit Unterschrank',
+    'koje-14': 'Waschbecken mit Unterschrank',
+    'koje-17': 'Badmöbel Set komplett',
+    'koje-23': 'Badmöbel Set komplett',
+    'koje-5':  'Doppelwaschbecken XXL',
+    'koje-24': 'Doppelwaschbecken Unterschrank',
+    'koje-25': 'Badmöbel Set mit Hochschrank',
+    'koje-1':  'Waschbecken mit Unterschrank',
+    'koje-9':  'Badmöbel Set komplett',
+    'koje-21': 'Doppelwaschbecken kompakt',
+  };
+
+  function buildTitle(p, id) {
+    const alt = ALT_TERMS[id] || 'Waschbecken mit Unterschrank';
+    // Haupttitel
+    const t1 = `${p.title} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK`;
+    // Alternativer Titel mit anderen Suchbegriffen
+    const t2 = `${alt} ${p.width} – ${p.discount}% | AUSSTELLUNGSSTÜCK`;
+    return { main: t1, alt: t2 };
   }
 
   function buildText(p) {
@@ -124,11 +166,15 @@
     const p = PRODUCTS[id];
     if (!p) return;
 
-    const titleText = buildTitle(p);
+    const titles    = buildTitle(p, id);
+    const titleText = titles.main;
+    const altTitle  = titles.alt;
     const bodyText  = buildText(p);
     const price     = p.price.toLocaleString('de-DE', {minimumFractionDigits: 0, maximumFractionDigits: 2});
     const tLen      = titleText.length;
     const tClass    = tLen > MAX_TITLE ? 'over' : '';
+    const aLen      = altTitle.length;
+    const aClass    = aLen > MAX_TITLE ? 'over' : '';
 
     const imgHTML = p.images.map((src, i) => {
       const fname = `${id}-${i+1}.webp`;
@@ -156,9 +202,15 @@
       <div class="card-body">
         <div>
           <div class="field">
-            <div class="field-label">Titel <span class="char-count ${tClass}">${tLen} / ${MAX_TITLE} Zeichen</span></div>
+            <div class="field-label">Titel A <span class="char-count ${tClass}">${tLen} / ${MAX_TITLE} Z.</span></div>
             <div class="copy-box">${titleText.replace(/&/g,'&amp;')}
               <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr(${JSON.stringify(titleText)}, this)">Kopieren</button></div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-label">Titel B – alternative Suchbegriffe <span class="char-count ${aClass}">${aLen} / ${MAX_TITLE} Z.</span></div>
+            <div class="copy-box">${altTitle.replace(/&/g,'&amp;')}
+              <div class="btn-row"><button class="copy-btn-sm" onclick="copyStr(${JSON.stringify(altTitle)}, this)">Kopieren</button></div>
             </div>
           </div>
           <div class="field">
@@ -177,7 +229,10 @@
         </div>
         <div>
           <div class="images-label">Bilder (${p.images.length} Stück)</div>
-          <div class="images-hint">↓ Download-Link anklicken → dann in Kleinanzeigen hochladen</div>
+          <button class="dl-all-btn" onclick="downloadAll(${JSON.stringify(p.images)}, '${id}', this)">
+            ↓ Alle ${p.images.length} Bilder herunterladen
+          </button>
+          <div class="dl-hint">1. Alle herunterladen &nbsp;→&nbsp; 2. Kleinanzeigen öffnen &nbsp;→&nbsp; 3. Aus Downloads hochladen / reinziehen</div>
           <div class="images-grid">${imgHTML}</div>
         </div>
       </div>
